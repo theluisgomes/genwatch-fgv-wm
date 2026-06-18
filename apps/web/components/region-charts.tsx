@@ -3,6 +3,7 @@
 import React from "react";
 import type { RegionalAnalytics } from "@/lib/api";
 import { BrazilMap } from "@/components/brazil-map";
+import { MACRO_REGION_BY_ID } from "@/lib/brazil-regions";
 import {
   Bar,
   BarChart,
@@ -76,6 +77,24 @@ function RegionDetailPanel({ region }: { region: RegionalAnalytics["regions"][nu
         <p className="text-sm text-muted mt-1">
           {region.dominant_generation.share}% do volume regional de sinais
         </p>
+      </div>
+
+      <div>
+        <p className="text-[10px] uppercase tracking-[0.18em] text-muted mb-3">Estados na região</p>
+        <div className="flex flex-wrap gap-1.5">
+          {(MACRO_REGION_BY_ID[region.region_id as keyof typeof MACRO_REGION_BY_ID]?.states ?? []).map(
+            (state) => (
+              <span
+                key={state.abbr}
+                className="pill"
+                style={{ borderColor: `${region.color}55`, color: region.color }}
+                title={state.name}
+              >
+                {state.abbr}
+              </span>
+            ),
+          )}
+        </div>
       </div>
 
       <div>

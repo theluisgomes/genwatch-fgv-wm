@@ -290,7 +290,7 @@ REGION_COLORS = {
     "nordeste": "#fcd34d",
     "centro_oeste": "#fdba74",
     "sudeste": "#3ecfaa",
-    "sul": "#a5b4fc",
+    "sul": "#fca5a5",
 }
 
 REGION_WEIGHTS = {
