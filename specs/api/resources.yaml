@@ -96,6 +96,11 @@ api:
       auth: optional
       response: GenerationAnalytics
 
+    - path: /analytics/regions
+      method: GET
+      auth: optional
+      response: RegionalAnalytics
+
     - path: /pipeline/run
       method: POST
       auth: optional

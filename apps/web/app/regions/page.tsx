@@ -1,22 +1,15 @@
+import { RegionVisualizations } from "@/components/region-charts";
 import { InsightCard, SectionHeader } from "@/components/ui";
-import { getAnalyticsOverview, getGenerations, getInsights } from "@/lib/api";
+import { getGenerations, getInsights, getRegionalAnalytics } from "@/lib/api";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
-
-const REGIONS = [
-  { id: "norte", label: "Norte" },
-  { id: "nordeste", label: "Nordeste" },
-  { id: "centro_oeste", label: "Centro-Oeste" },
-  { id: "sudeste", label: "Sudeste" },
-  { id: "sul", label: "Sul" },
-];
 
 export default async function RegionsPage() {
   const [generations, insights, analytics] = await Promise.all([
     getGenerations(),
     getInsights(30),
-    getAnalyticsOverview(),
+    getRegionalAnalytics(),
   ]);
 
   return (
@@ -24,34 +17,47 @@ export default async function RegionsPage() {
       <SectionHeader
         eyebrow="5 Brasis"
         title="Lente regional"
-        description="Distribuição de sinais e insights por região do Brasil."
+        description="Mapa do Brasil, distribuição geracional por região e insights contextualizados."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-10">
-        {analytics.regional_distribution.map((region) => (
+        {analytics.regions.map((region) => (
           <div key={region.region_id} className="card">
             <p className="eyebrow mb-2">{region.region}</p>
             <p className="font-display text-3xl" style={{ color: region.color }}>
-              {region.signals}
+              {region.total_signals.toLocaleString("pt-BR")}
             </p>
             <p className="text-xs text-muted mt-1">sinais</p>
+            <p className="text-[10px] text-muted mt-3">
+              Líder:{" "}
+              <span style={{ color: region.dominant_generation.color }}>
+                {region.dominant_generation.label}
+              </span>
+            </p>
           </div>
         ))}
       </div>
 
-      {REGIONS.map((region) => {
+      <RegionVisualizations analytics={analytics} />
+
+      {analytics.regions.map((region) => {
         const regionInsights = insights.filter(
-          (insight) => insight.region_id === region.id || insight.region_id === null,
+          (insight) => insight.region_id === region.region_id || insight.region_id === null,
         );
         return (
-          <section key={region.id} className="mb-10">
-            <h3 className="font-display text-2xl mb-4">{region.label}</h3>
+          <section key={region.region_id} className="mb-10">
+            <div className="mb-4 flex items-end justify-between gap-4">
+              <h3 className="font-display text-2xl">{region.region}</h3>
+              <p className="text-xs text-muted">
+                {region.dominant_generation.label} · {region.dominant_generation.share}% dos sinais
+              </p>
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {regionInsights.slice(0, 4).map((insight) => {
                 const generation = generations.find((g) => g.id === insight.generation_id);
                 return (
                   <InsightCard
-                    key={`${region.id}-${insight.id}`}
+                    key={`${region.region_id}-${insight.id}`}
                     title={`${generation?.label ?? insight.generation_id}: ${insight.title}`}
                     narrative={insight.narrative}
                     layer={insight.layer}

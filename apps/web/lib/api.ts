@@ -92,6 +92,53 @@ export function getAnalyticsOverview() {
   return fetchJson<AnalyticsOverview>("/api/v1/analytics/overview");
 }
 
+export interface RegionalAnalytics {
+  regions: Array<{
+    region_id: string;
+    region: string;
+    color: string;
+    total_signals: number;
+    total_insights: number;
+    intensity: number;
+    dominant_generation: {
+      id: GenerationId;
+      label: string;
+      color: string;
+      share: number;
+    };
+    generations: Array<{
+      generation_id: GenerationId;
+      label: string;
+      color: string;
+      signals: number;
+      insights: number;
+      share: number;
+    }>;
+    emotional_triggers: Array<{
+      trigger: string;
+      label: string;
+      count: number;
+      color: string;
+    }>;
+  }>;
+  generation_series: Array<{
+    id: GenerationId;
+    label: string;
+    color: string;
+  }>;
+  matrix: Array<{ region_id: string; region: string; color: string } & Record<GenerationId, number>>;
+  totals: {
+    signals: number;
+    insights: number;
+    regions: number;
+    generations: number;
+  };
+}
+
+export function getRegionalAnalytics() {
+  return fetchJson<RegionalAnalytics>("/api/v1/analytics/regions");
+}
+
 export interface GenerationAnalytics {
   generation_id: GenerationId;
   label: string;

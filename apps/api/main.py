@@ -293,6 +293,127 @@ REGION_COLORS = {
     "sul": "#a5b4fc",
 }
 
+REGION_WEIGHTS = {
+    "norte": 0.75,
+    "nordeste": 1.15,
+    "centro_oeste": 0.95,
+    "sudeste": 1.35,
+    "sul": 1.05,
+}
+
+
+def _region_generation_signals(region_id: str, generation_id: str) -> int:
+    base = GENERATION_VOLUME.get(generation_id, 300) // 5
+    modifier = (hash(f"{region_id}-{generation_id}") % 120) + 40
+    weight = REGION_WEIGHTS.get(region_id, 1.0)
+    return int(base * weight + modifier)
+
+
+def _analytics_regions() -> dict[str, Any]:
+    regions: list[dict[str, Any]] = []
+    matrix: list[dict[str, Any]] = []
+    max_signals = 0
+
+    for region in REGIONS:
+        rid = region["id"]
+        generation_rows: list[dict[str, Any]] = []
+        region_total_signals = 0
+
+        for generation in GENERATIONS:
+            gid = generation["id"]
+            signals = _region_generation_signals(rid, gid)
+            insights = max(
+                1,
+                len(
+                    [
+                        i
+                        for i in SEED_INSIGHTS
+                        if i["generation_id"] == gid
+                        and (i.get("region_id") == rid or i.get("region_id") is None)
+                    ]
+                ),
+            )
+            generation_rows.append(
+                {
+                    "generation_id": gid,
+                    "label": generation["label"],
+                    "color": generation["color"],
+                    "signals": signals,
+                    "insights": insights,
+                }
+            )
+            region_total_signals += signals
+            max_signals = max(max_signals, signals)
+
+        for row in generation_rows:
+            row["share"] = round((row["signals"] / region_total_signals) * 100) if region_total_signals else 0
+
+        dominant = max(generation_rows, key=lambda item: item["signals"])
+        region_insights = sum(row["insights"] for row in generation_rows)
+
+        trigger_counts: dict[str, int] = {}
+        for insight in SEED_INSIGHTS:
+            if insight.get("region_id") not in {rid, None}:
+                continue
+            trigger = insight.get("emotional_trigger")
+            if trigger:
+                trigger_counts[trigger] = trigger_counts.get(trigger, 0) + 1
+        emotional_triggers = [
+            {
+                "trigger": key,
+                "label": key.capitalize(),
+                "count": value,
+                "color": TRIGGER_COLORS.get(key, "#3ecfaa"),
+            }
+            for key, value in sorted(trigger_counts.items(), key=lambda item: item[1], reverse=True)
+        ]
+
+        regions.append(
+            {
+                "region_id": rid,
+                "region": region["label"],
+                "color": REGION_COLORS.get(rid, "#3ecfaa"),
+                "total_signals": region_total_signals,
+                "total_insights": region_insights,
+                "intensity": 0,
+                "dominant_generation": {
+                    "id": dominant["generation_id"],
+                    "label": dominant["label"],
+                    "color": dominant["color"],
+                    "share": dominant["share"],
+                },
+                "generations": generation_rows,
+                "emotional_triggers": emotional_triggers,
+            }
+        )
+
+        matrix_row: dict[str, Any] = {
+            "region_id": rid,
+            "region": region["label"],
+            "color": REGION_COLORS.get(rid, "#3ecfaa"),
+        }
+        for row in generation_rows:
+            matrix_row[row["generation_id"]] = row["signals"]
+        matrix.append(matrix_row)
+
+    if max_signals:
+        for region in regions:
+            region["intensity"] = round((region["total_signals"] / max(r["total_signals"] for r in regions)) * 100)
+
+    return {
+        "regions": regions,
+        "generation_series": [
+            {"id": g["id"], "label": g["label"], "color": g["color"]} for g in GENERATIONS
+        ],
+        "matrix": matrix,
+        "totals": {
+            "signals": sum(region["total_signals"] for region in regions),
+            "insights": sum(region["total_insights"] for region in regions),
+            "regions": len(REGIONS),
+            "generations": len(GENERATIONS),
+        },
+    }
+
 
 def _analytics_overview() -> dict[str, Any]:
     generation_pulse = []
@@ -446,6 +567,11 @@ def _analytics_overview() -> dict[str, Any]:
 @app.get("/api/v1/analytics/overview")
 def analytics_overview() -> dict[str, Any]:
     return _analytics_overview()
+
+
+@app.get("/api/v1/analytics/regions")
+def analytics_regions() -> dict[str, Any]:
+    return _analytics_regions()
 
 
 def _analytics_generation(generation_id: str) -> dict[str, Any]:
