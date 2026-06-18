@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { handleStubApi } from "@/lib/stub-api";
 
 const API_PROXY_URL = process.env.API_PROXY_URL?.replace(/\/$/, "");
 
@@ -6,14 +7,24 @@ async function proxy(
   request: NextRequest,
   context: { params: Promise<{ path: string[] }> },
 ): Promise<NextResponse> {
+  const { path } = await context.params;
+
   if (!API_PROXY_URL) {
+    if (request.method === "GET" || request.method === "HEAD") {
+      const stub = await handleStubApi(path);
+      if (stub) {
+        return new NextResponse(stub.body, {
+          status: stub.status,
+          headers: stub.headers,
+        });
+      }
+    }
     return NextResponse.json(
       { error: "API proxy not configured. Set API_PROXY_URL on Vercel." },
       { status: 503 },
     );
   }
 
-  const { path } = await context.params;
   const target = `${API_PROXY_URL}/api/v1/${path.join("/")}${request.nextUrl.search}`;
 
   const headers = new Headers();
