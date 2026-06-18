@@ -1,5 +1,7 @@
 import { apiPath, getAdminKey } from "@/lib/config";
 
+export const dynamic = "force-dynamic";
+
 async function getAdminHeaders(): Promise<HeadersInit> {
   return {
     "X-API-Key": getAdminKey(),
