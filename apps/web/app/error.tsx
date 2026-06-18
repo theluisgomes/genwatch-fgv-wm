@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { ApiUnavailableError } from "@/lib/api";
+import { ApiUnavailableError } from "@/lib/api-error";
 
 export default function Error({
   error,

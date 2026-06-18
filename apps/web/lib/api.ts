@@ -1,17 +1,32 @@
 import type { GenerationId } from "@genwatch/types";
+import { ApiUnavailableError } from "@/lib/api-error";
 import { getApiBase } from "@/lib/config";
 
-export class ApiUnavailableError extends Error {
-  constructor(cause?: unknown) {
-    super(
-      "GenWatch API is not reachable. Start it in another terminal: make dev-api",
-    );
-    this.name = "ApiUnavailableError";
-    this.cause = cause;
-  }
+export { ApiUnavailableError } from "@/lib/api-error";
+
+function apiPathToSegments(path: string): string[] {
+  const pathname = path.split("?")[0] ?? path;
+  return pathname.replace(/^\/api\/v1\//, "").split("/").filter(Boolean);
+}
+
+function shouldUseStubApi(): boolean {
+  return (
+    typeof window === "undefined" &&
+    !process.env.NEXT_PUBLIC_API_URL &&
+    !process.env.API_PROXY_URL
+  );
 }
 
 async function fetchJson<T>(path: string): Promise<T> {
+  if (shouldUseStubApi()) {
+    const { handleStubApi } = await import("@/lib/stub-api");
+    const stub = await handleStubApi(apiPathToSegments(path));
+    if (!stub?.ok) {
+      throw new Error(`API error ${stub?.status ?? 404} for ${path}`);
+    }
+    return stub.json() as Promise<T>;
+  }
+
   const url = `${getApiBase()}${path}`;
 
   let response: Response;
