@@ -209,28 +209,67 @@ function DominantGenerationChart({ regions }: { regions: RegionalAnalytics["regi
 }
 
 function RegionalIntensityChart({ regions }: { regions: RegionalAnalytics["regions"] }) {
+  const metrics = [
+    { key: "total_signals" as const, name: "Sinais", unit: "captados", color: "#818cf8" },
+    { key: "total_insights" as const, name: "Insights", unit: "ativos", color: "#3ecfaa" },
+  ];
+
   return (
-    <ChartCard title="Intensidade regional" subtitle="Comparativo de sinais e insights por região">
-      <ResponsiveContainer width="100%" height={280}>
-        <BarChart data={regions}>
-          <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
-          <XAxis
-            dataKey="region"
-            tick={{ fill: "#6a7888", fontSize: 11 }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis tick={{ fill: "#6a7888", fontSize: 11 }} axisLine={false} tickLine={false} />
-          <Tooltip {...chartTooltipStyle} />
-          <Legend wrapperStyle={{ fontSize: 11, color: "#6a7888" }} />
-          <Bar dataKey="total_signals" name="Sinais" radius={[4, 4, 0, 0]}>
-            {regions.map((region) => (
-              <Cell key={region.region_id} fill={region.color} />
-            ))}
-          </Bar>
-          <Bar dataKey="total_insights" name="Insights" fill="#818cf8" opacity={0.7} radius={[4, 4, 0, 0]} />
-        </BarChart>
-      </ResponsiveContainer>
+    <ChartCard
+      title="Intensidade regional"
+      subtitle="Cada métrica com escala própria — volume de captação vs. insights por região"
+    >
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {metrics.map((metric) => {
+          const maxValue = Math.max(...regions.map((region) => region[metric.key]), 1);
+          const yMax = Math.ceil(maxValue * 1.15);
+
+          return (
+            <div key={metric.key}>
+              <div className="mb-3 flex items-baseline justify-between gap-2">
+                <p className="text-sm font-medium" style={{ color: metric.color }}>
+                  {metric.name}
+                </p>
+                <p className="text-[10px] text-muted uppercase tracking-wider">{metric.unit}</p>
+              </div>
+              <ResponsiveContainer width="100%" height={220}>
+                <BarChart data={regions} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
+                  <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis
+                    dataKey="region"
+                    tick={{ fill: "#6a7888", fontSize: 10 }}
+                    axisLine={false}
+                    tickLine={false}
+                    interval={0}
+                    angle={-20}
+                    textAnchor="end"
+                    height={48}
+                  />
+                  <YAxis
+                    domain={[0, yMax]}
+                    tick={{ fill: "#6a7888", fontSize: 10 }}
+                    axisLine={false}
+                    tickLine={false}
+                    width={40}
+                  />
+                  <Tooltip
+                    {...chartTooltipStyle}
+                    formatter={(value) => [
+                      Number(value ?? 0).toLocaleString("pt-BR"),
+                      metric.name,
+                    ]}
+                  />
+                  <Bar dataKey={metric.key} name={metric.name} radius={[4, 4, 0, 0]}>
+                    {regions.map((region) => (
+                      <Cell key={region.region_id} fill={region.color} fillOpacity={0.9} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          );
+        })}
+      </div>
     </ChartCard>
   );
 }

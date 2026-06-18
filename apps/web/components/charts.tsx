@@ -111,48 +111,37 @@ export function GenerationRadarChart({
   data: AnalyticsOverview["generation_radar"];
   dimensions: string[];
 }) {
-  const [active, setActive] = React.useState(0);
-  const current = data[active] ?? data[0];
-  const radarData = dimensions.map((dimension) => ({
-    dimension,
-    value: current?.[dimension as keyof typeof current] as number,
-  }));
+  const radarData = dimensions.map((dimension) => {
+    const row: Record<string, string | number> = { dimension };
+    for (const item of data) {
+      row[item.generation] = item[dimension as keyof typeof item] as number;
+    }
+    return row;
+  });
 
   return (
     <ChartCard
       title="Lente comportamental · Radar geracional"
-      subtitle="Comparativo multidimensional por geração"
+      subtitle="Comparativo multidimensional — todas as gerações sobrepostas"
     >
-      <div className="mb-4 flex flex-wrap gap-2">
-        {data.map((item, index) => (
-          <button
-            key={item.generation}
-            type="button"
-            onClick={() => setActive(index)}
-            className="pill transition hover:border-white/20"
-            style={{
-              borderColor: active === index ? item.color : undefined,
-              color: active === index ? item.color : undefined,
-            }}
-          >
-            {item.generation}
-          </button>
-        ))}
-      </div>
-      <ResponsiveContainer width="100%" height={280}>
+      <ResponsiveContainer width="100%" height={320}>
         <RadarChart data={radarData}>
           <PolarGrid stroke="rgba(255,255,255,0.05)" />
           <PolarAngleAxis dataKey="dimension" tick={{ fill: "#6a7888", fontSize: 10 }} />
           <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#4a5a6a", fontSize: 9 }} />
-          <Radar
-            name={current?.generation}
-            dataKey="value"
-            stroke={current?.color}
-            fill={current?.color}
-            fillOpacity={0.25}
-            strokeWidth={2}
-          />
           <Tooltip {...chartTooltipStyle} />
+          <Legend wrapperStyle={{ fontSize: 11, color: "#6a7888" }} />
+          {data.map((item) => (
+            <Radar
+              key={item.generation}
+              name={item.generation}
+              dataKey={item.generation}
+              stroke={item.color}
+              fill={item.color}
+              fillOpacity={0.12}
+              strokeWidth={2}
+            />
+          ))}
         </RadarChart>
       </ResponsiveContainer>
     </ChartCard>
@@ -249,25 +238,70 @@ export function SourceMixChart({ data }: { data: AnalyticsOverview["source_mix"]
   );
 }
 
+const PIPELINE_LAYERS = [
+  { key: "capture" as const, name: "Captação", color: "#818cf8", unit: "sinais" },
+  { key: "intelligence" as const, name: "Inteligência", color: "#3ecfaa", unit: "insights" },
+  { key: "delivery" as const, name: "Entregas", color: "#fcd34d", unit: "insights" },
+];
+
 export function PipelineChart({ data }: { data: AnalyticsOverview["layer_pipeline"] }) {
   return (
     <ChartCard
       title="Pipeline · Captação → Inteligência → Entregas"
-      subtitle="Fluxo das três camadas por geração"
+      subtitle="Cada camada com escala própria — volumes de captação e produção de insights"
       className="col-span-full"
     >
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data}>
-          <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
-          <XAxis dataKey="generation" tick={{ fill: "#6a7888", fontSize: 11 }} axisLine={false} tickLine={false} />
-          <YAxis tick={{ fill: "#6a7888", fontSize: 11 }} axisLine={false} tickLine={false} />
-          <Tooltip {...chartTooltipStyle} />
-          <Legend wrapperStyle={{ fontSize: 11, color: "#6a7888" }} />
-          <Bar dataKey="capture" name="Captação" fill="#818cf8" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="intelligence" name="Inteligência" fill="#3ecfaa" />
-          <Bar dataKey="delivery" name="Entregas" fill="#fcd34d" radius={[4, 4, 0, 0]} />
-        </BarChart>
-      </ResponsiveContainer>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {PIPELINE_LAYERS.map((layer) => {
+          const maxValue = Math.max(...data.map((row) => row[layer.key]), 1);
+          const yMax = Math.ceil(maxValue * 1.15);
+
+          return (
+            <div key={layer.key}>
+              <div className="mb-3 flex items-baseline justify-between gap-2">
+                <p className="text-sm font-medium" style={{ color: layer.color }}>
+                  {layer.name}
+                </p>
+                <p className="text-[10px] text-muted uppercase tracking-wider">{layer.unit}</p>
+              </div>
+              <ResponsiveContainer width="100%" height={220}>
+                <BarChart data={data} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
+                  <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis
+                    dataKey="generation"
+                    tick={{ fill: "#6a7888", fontSize: 9 }}
+                    axisLine={false}
+                    tickLine={false}
+                    interval={0}
+                    angle={-25}
+                    textAnchor="end"
+                    height={52}
+                  />
+                  <YAxis
+                    domain={[0, yMax]}
+                    tick={{ fill: "#6a7888", fontSize: 10 }}
+                    axisLine={false}
+                    tickLine={false}
+                    width={36}
+                  />
+                  <Tooltip
+                    {...chartTooltipStyle}
+                    formatter={(value) => [
+                      Number(value ?? 0).toLocaleString("pt-BR"),
+                      layer.name,
+                    ]}
+                  />
+                  <Bar dataKey={layer.key} name={layer.name} fill={layer.color} radius={[4, 4, 0, 0]}>
+                    {data.map((entry) => (
+                      <Cell key={entry.generation} fill={entry.color} fillOpacity={0.85} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          );
+        })}
+      </div>
     </ChartCard>
   );
 }
