@@ -1,0 +1,21 @@
+source:
+  id: reddit
+  type: live
+  adapter: RedditAdapter
+  schedule: "0 6 * * *"
+  platform: reddit
+  config:
+    subreddits:
+      - brasil
+      - desabafos
+      - faculdade
+      - enem
+    search_queries:
+      - educação
+      - vestibular
+      - MBA Brasil
+  generation_mapping:
+    rule: keyword_classifier
+    fallback: llm_classify
+  outputs:
+    entity: raw_signals

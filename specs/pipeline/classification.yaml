@@ -1,0 +1,26 @@
+classification:
+  generation_rules:
+    alfa:
+      keywords: [pais, escola, infantil, filhos, educação básica, creche]
+    z:
+      keywords: [enem, vestibular, faculdade, universidade, gen z, jovem]
+    millennial:
+      keywords: [mba, pós-graduação, mestrado, carreira, millennial]
+    x:
+      keywords: [executivo, requalificação, liderança, gen x, corporativo]
+    boomer:
+      keywords: [aposentadoria, lifelong, terceira idade, boomer, legado]
+  region_rules:
+    norte:
+      keywords: [amazonas, pará, manaus, belém]
+    nordeste:
+      keywords: [bahia, pernambuco, ceará, recife, salvador]
+    centro_oeste:
+      keywords: [brasília, goiás, mato grosso, cuiabá]
+    sudeste:
+      keywords: [são paulo, rio de janeiro, minas gerais, campinas]
+    sul:
+      keywords: [paraná, rio grande do sul, santa catarina, curitiba, porto alegre]
+  fallback:
+    engine: llm
+    model: gpt-4o-mini

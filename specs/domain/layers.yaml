@@ -1,0 +1,16 @@
+layers:
+  - id: capture
+    number: 1
+    label: Captação de Sinais
+    description: "Digital · Dark Social · FGV"
+    dimension: "Escuta etnográfica"
+  - id: intelligence
+    number: 2
+    label: Inteligência
+    description: "IA · NLP · Significado · Emoção"
+    dimension: "Semiótica · Psicologia"
+  - id: delivery
+    number: 3
+    label: Entregas
+    description: "Narrativas e insights acionáveis"
+    dimension: "Não dados — direção"

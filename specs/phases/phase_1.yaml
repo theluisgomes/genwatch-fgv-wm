@@ -1,0 +1,15 @@
+phase:
+  id: 1
+  name: Imersão & Arquitetura
+  weeks: [1, 2]
+  gate: architecture_approved
+
+acceptance_criteria:
+  - spec: domain/generations.yaml exists with all 5 generations
+  - spec: data/schema.yaml validates and codegen produces migrations
+  - spec: api/resources.yaml validates and OpenAPI generates
+  - spec: ui/design_tokens.yaml matches one-pager colors
+  - test: spec validate passes
+  - test: spec codegen produces zero diff on CI
+  - deliverable: dashboard shell renders generation tabs from spec
+  - milestone: FGV/DCOM approves architecture + strategic questions

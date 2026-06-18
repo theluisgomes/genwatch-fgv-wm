@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: genwatch
+      POSTGRES_PASSWORD: genwatch
+      POSTGRES_DB: genwatch
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: .
+      dockerfile: infra/Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://genwatch:genwatch@postgres:5432/genwatch
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  pgdata:

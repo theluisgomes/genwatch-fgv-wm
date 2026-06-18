@@ -1,0 +1,25 @@
+@import "@fontsource-variable/google-sans/wght.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+}
+
+.eyebrow {
+  @apply text-[10px] uppercase tracking-[0.2em] text-accent font-medium;
+}
+
+.card {
+  @apply border border-white/5 bg-background p-6;
+}
+
+.pill {
+  @apply rounded px-2.5 py-1 text-[10px] uppercase tracking-wider border border-white/10 text-muted;
+}

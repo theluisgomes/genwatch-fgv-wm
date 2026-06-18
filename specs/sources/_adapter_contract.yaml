@@ -1,0 +1,23 @@
+adapter_contract:
+  version: "1.0"
+  interface:
+    fetch:
+      inputs:
+        generation_id: { type: string }
+        since: { type: datetime }
+        region_id: { type: string, optional: true }
+      outputs:
+        - name: RawSignal
+          fields:
+            source_id: string
+            platform: string
+            text: string
+            url: { type: string, optional: true }
+            collected_at: datetime
+            generation_hint: { type: string, optional: true }
+            region_hint: { type: string, optional: true }
+            metadata: { type: object, optional: true }
+  requirements:
+    - idempotent_by: [source_id, url]
+    - min_batch_size: 1
+    - max_latency_seconds: 300

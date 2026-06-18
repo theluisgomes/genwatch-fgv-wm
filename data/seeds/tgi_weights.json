@@ -1,0 +1,20 @@
+[
+  {
+    "generation_id": "z",
+    "region_id": "sudeste",
+    "metric": "intencao_matricula",
+    "projected_value": "2.4 milhões de jovens com intenção de ingresso superior"
+  },
+  {
+    "generation_id": "millennial",
+    "region_id": "sudeste",
+    "metric": "roi_mba",
+    "projected_value": "68% percebem ROI positivo em 3 anos"
+  },
+  {
+    "generation_id": "boomer",
+    "region_id": "sul",
+    "metric": "lifelong_learning",
+    "projected_value": "890 mil brasileiros dispostos a programas pós-carreira"
+  }
+]

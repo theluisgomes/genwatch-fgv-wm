@@ -1,0 +1,107 @@
+api:
+  version: v1
+  base_path: /api/v1
+  resources:
+    - path: /health
+      method: GET
+      auth: none
+      response: HealthStatus
+
+    - path: /generations
+      method: GET
+      auth: optional
+      response:
+        type: array
+        items: GenerationSummary
+
+    - path: /generations/{generation_id}/summary
+      method: GET
+      auth: optional
+      params:
+        - name: generation_id
+          required: true
+        - name: region_id
+          required: false
+      response: GenerationDashboard
+
+    - path: /generations/{generation_id}/layers/{layer}
+      method: GET
+      auth: optional
+      params:
+        - name: generation_id
+          required: true
+        - name: layer
+          required: true
+        - name: region_id
+          required: false
+        - name: limit
+          required: false
+          default: 20
+      response: LayerDetail
+
+    - path: /insights
+      method: GET
+      auth: optional
+      params:
+        - name: generation_id
+          required: false
+        - name: region_id
+          required: false
+        - name: layer
+          required: false
+        - name: limit
+          required: false
+          default: 50
+      response:
+        type: array
+        items: Insight
+
+    - path: /signals
+      method: GET
+      auth: optional
+      params:
+        - name: generation_id
+          required: false
+        - name: source_id
+          required: false
+        - name: limit
+          required: false
+          default: 50
+      response:
+        type: array
+        items: RawSignal
+
+    - path: /ingestion/runs
+      method: GET
+      auth: admin
+      response:
+        type: array
+        items: IngestionRun
+
+    - path: /ingestion/run/{source_id}
+      method: POST
+      auth: admin
+      params:
+        - name: source_id
+          required: true
+      response: IngestionRun
+
+    - path: /analytics/overview
+      method: GET
+      auth: optional
+      response: AnalyticsOverview
+
+    - path: /analytics/generations/{generation_id}
+      method: GET
+      auth: optional
+      response: GenerationAnalytics
+
+    - path: /pipeline/run
+      method: POST
+      auth: optional
+      response: PipelineRunResult
+
+    - path: /reports/inaugural
+      method: GET
+      auth: optional
+      response: ReportPDF

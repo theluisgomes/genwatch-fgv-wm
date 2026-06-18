@@ -1,0 +1,67 @@
+terms:
+  - id: dark_social
+    tag: Fonte de dados
+    label: Dark Social
+    definition: >
+      Compartilhamentos em canais privados e criptografados como WhatsApp,
+      invisíveis para analytics tradicional.
+    fgv_context: >
+      Conversas sobre qual faculdade escolher acontecem no WhatsApp,
+      fora do radar do mercado.
+
+  - id: tgi_kantar
+    tag: Validação estatística
+    label: TGI Kantar
+    definition: >
+      Base com 50k+ entrevistas anuais no Brasil, representatividade
+      projetável para toda a população.
+    fgv_context: >
+      Não apenas "a Gen Z fala assim", mas "X milhões de jovens
+      brasileiros pensam assim sobre educação".
+
+  - id: nlp_llm
+    tag: Tecnologia de IA
+    label: NLP & LLMs
+    definition: >
+      Processamento de Linguagem Natural e Large Language Models transformam
+      texto caótico em sinais organizados.
+    fgv_context: >
+      Lê milhares de conversas sobre educação e extrai o que as gerações
+      sentem além do que dizem.
+
+  - id: deslocamento_cultural
+    tag: Antropologia do consumo
+    label: Deslocamento Cultural
+    definition: >
+      Momento em que o significado simbólico de um produto muda para um grupo.
+    fgv_context: >
+      O que o MBA significa para Millennials em 2025 é diferente de 2018.
+
+  - id: lente_comportamental
+    tag: Diferencial Wisemetrics
+    label: Lente Comportamental
+    definition: >
+      Decompõe dados brutos em dimensões de significado: cultura, emoção,
+      geração, região e propósito.
+    fgv_context: >
+      Os dados mostram o quê. A lente comportamental explica o porquê.
+
+  - id: escuta_etnografica
+    tag: Metodologia
+    label: Escuta Etnográfica Digital
+    definition: >
+      Aplica a metodologia da etnografia ao ambiente digital.
+    fgv_context: >
+      Revela medos não declarados e tensões que moldam decisões de matrícula.
+
+gatilhos:
+  - id: medo
+    label: Medo
+  - id: aspiracao
+    label: Aspiração
+  - id: pertencimento
+    label: Pertença
+  - id: proposito
+    label: Propósito
+  - id: ansiedade
+    label: Ansiedade

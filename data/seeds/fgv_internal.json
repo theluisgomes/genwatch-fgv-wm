@@ -1,0 +1,16 @@
+[
+  {
+    "source_id": "fgv_internal_stub",
+    "platform": "fgv",
+    "text": "NPS executivo: participantes valorizam networking acima de conteúdo técnico.",
+    "generation_hint": "x",
+    "region_hint": "sudeste"
+  },
+  {
+    "source_id": "fgv_internal_stub",
+    "platform": "fgv",
+    "text": "Pesquisa interna: Millennials associam MBA FGV a prestígio, mas questionam custo.",
+    "generation_hint": "millennial",
+    "region_hint": "sudeste"
+  }
+]

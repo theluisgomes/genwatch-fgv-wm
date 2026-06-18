@@ -1,0 +1,684 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0e1520;font-family:'Inter',sans-serif;color:#eeeae0;}
+
+/* SHARED */
+.ey{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.ey-ln{width:24px;height:1px;background:#3ecfaa;}
+.ey-dt{width:4px;height:4px;border-radius:50%;background:#3ecfaa;}
+.ey-tx{font-size:8.5px;letter-spacing:0.2em;color:#3ecfaa;text-transform:uppercase;font-weight:500;}
+.sec-num{font-family:'Playfair Display',serif;font-size:120px;font-weight:600;color:rgba(255,255,255,0.025);position:absolute;top:-20px;right:40px;line-height:1;pointer-events:none;user-select:none;}
+
+/* SECTION TRANSITION */
+.sec-sep{padding:20px 56px;display:flex;align-items:center;gap:16px;position:relative;overflow:hidden;}
+.sec-sep-line{flex:1;height:0.5px;background:rgba(255,255,255,0.06);}
+.sec-sep-label{font-size:7.5px;letter-spacing:0.2em;text-transform:uppercase;color:#2a3a4a;}
+
+/* ==================== PÁGINA 1 ==================== */
+.p1{padding:72px 56px 80px;position:relative;overflow:hidden;}
+.p1-bg{position:absolute;top:-60px;right:-80px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(62,207,170,0.04) 0%,transparent 70%);pointer-events:none;}
+.p1-hero{margin-bottom:72px;}
+.p1-tag{display:inline-flex;align-items:center;gap:6px;font-size:8px;letter-spacing:0.16em;text-transform:uppercase;color:#3ecfaa;margin-bottom:24px;}
+.p1-tag-dot{width:4px;height:4px;border-radius:50%;background:#3ecfaa;}
+.p1-headline{font-family:'Playfair Display',serif;font-size:54px;color:#eeeae0;font-weight:400;line-height:1.05;margin-bottom:24px;max-width:700px;}
+.p1-headline em{color:#3ecfaa;font-style:italic;}
+.p1-lead{font-size:12px;color:#6a7888;line-height:1.75;max-width:580px;}
+
+/* stats grandes */
+.p1-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:72px;border-top:0.5px solid rgba(255,255,255,0.06);border-bottom:0.5px solid rgba(255,255,255,0.06);}
+.p1-stat{padding:36px 0;display:flex;flex-direction:column;gap:8px;border-right:0.5px solid rgba(255,255,255,0.06);}
+.p1-stat:last-child{border-right:none;padding-left:48px;}
+.p1-stat:nth-child(2){padding-left:48px;}
+.p1-stat-num{font-family:'Playfair Display',serif;font-size:56px;color:#3ecfaa;font-weight:400;line-height:1;}
+.p1-stat-label{font-size:10px;color:#4a5a6a;line-height:1.5;max-width:200px;}
+
+/* pilares */
+.p1-pilares{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.05);}
+.pillar{background:#0e1520;padding:28px 24px;}
+.pillar-num{font-size:7px;letter-spacing:0.16em;text-transform:uppercase;color:#3ecfaa;margin-bottom:12px;font-weight:600;}
+.pillar-icon{margin-bottom:14px;}
+.pillar-title{font-family:'Playfair Display',serif;font-size:14px;color:#eeeae0;margin-bottom:8px;line-height:1.2;}
+.pillar-text{font-size:9px;color:#4a5a6a;line-height:1.6;}
+
+/* problema / solução / diferencial */
+.p1-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:56px;}
+.pcol{}
+.pcol-icon{margin-bottom:16px;}
+.pcol-title{font-size:11px;font-weight:600;color:#eeeae0;margin-bottom:8px;letter-spacing:0.02em;}
+.pcol-text{font-size:9.5px;color:#5a6a7a;line-height:1.65;}
+.pcol-divider{width:24px;height:1px;background:#3ecfaa;margin-bottom:16px;opacity:0.6;}
+
+/* partner */
+.partner{display:flex;align-items:center;gap:12px;margin-top:48px;padding:14px 0;border-top:0.5px solid rgba(255,255,255,0.05);}
+.partner-lbl{font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:#2a3a4a;}
+.partner-badge{font-size:9px;color:#3ecfaa;font-style:italic;font-family:'Playfair Display',serif;}
+
+/* ==================== PÁGINA 2 — GLOSSÁRIO ==================== */
+.p2{padding:72px 56px 80px;position:relative;overflow:hidden;}
+.glos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:rgba(255,255,255,0.04);margin-bottom:1px;}
+.glos-grid-b{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:rgba(255,255,255,0.04);}
+.gcard{background:#0e1520;padding:32px 28px;display:flex;flex-direction:column;border-right:0.5px solid rgba(255,255,255,0.05);border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.gcard:last-child{border-right:none;}
+.gcard-illus{width:100%;height:80px;display:flex;align-items:center;justify-content:flex-start;margin-bottom:20px;}
+.gtag{font-size:6.5px;letter-spacing:0.14em;text-transform:uppercase;padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:10px;width:fit-content;}
+.t-dark{background:rgba(129,140,248,0.1);border:0.5px solid rgba(129,140,248,0.3);color:#a5b4fc;}
+.t-tgi{background:rgba(62,207,170,0.08);border:0.5px solid rgba(62,207,170,0.25);color:#3ecfaa;}
+.t-nlp{background:rgba(167,139,250,0.08);border:0.5px solid rgba(167,139,250,0.25);color:#c4b5fd;}
+.t-des{background:rgba(245,158,11,0.08);border:0.5px solid rgba(245,158,11,0.25);color:#fcd34d;}
+.t-len{background:rgba(244,114,182,0.08);border:0.5px solid rgba(244,114,182,0.25);color:#f9a8d4;}
+.t-etn{background:rgba(52,211,153,0.08);border:0.5px solid rgba(52,211,153,0.25);color:#6ee7b7;}
+.t-gat{background:rgba(251,146,60,0.08);border:0.5px solid rgba(251,146,60,0.25);color:#fdba74;}
+.gterm{font-family:'Playfair Display',serif;font-size:16px;color:#eeeae0;margin-bottom:10px;line-height:1.2;}
+.gdiv{width:20px;height:1px;background:rgba(62,207,170,0.3);margin-bottom:12px;}
+.gdef{font-size:9px;color:#6a7888;line-height:1.65;margin-bottom:14px;flex:1;}
+.gapp-lbl{font-size:6.5px;letter-spacing:0.14em;text-transform:uppercase;color:#3ecfaa;margin-bottom:5px;font-weight:600;}
+.gapp{font-size:8.5px;color:#3a5a4a;line-height:1.55;font-style:italic;padding-left:10px;border-left:1.5px solid rgba(62,207,170,0.2);}
+
+/* ==================== PÁGINA 3 — INFOGRÁFICO ==================== */
+.p3{padding:72px 56px 80px;position:relative;overflow:hidden;}
+.gen-axis{display:flex;gap:6px;margin-bottom:28px;align-items:center;flex-wrap:wrap;}
+.gen-lbl{font-size:8px;letter-spacing:0.14em;color:#2a3a4a;text-transform:uppercase;margin-right:4px;}
+.gp{font-size:7.5px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:2px;font-weight:500;}
+.ga{background:rgba(167,139,250,0.1);border:0.5px solid rgba(167,139,250,0.3);color:#c4b5fd;}
+.gz{background:rgba(62,207,170,0.08);border:0.5px solid rgba(62,207,170,0.28);color:#3ecfaa;}
+.gm{background:rgba(245,158,11,0.08);border:0.5px solid rgba(245,158,11,0.28);color:#fcd34d;}
+.gx{background:rgba(244,114,182,0.08);border:0.5px solid rgba(244,114,182,0.28);color:#f9a8d4;}
+.gbr{background:rgba(248,113,113,0.08);border:0.5px solid rgba(248,113,113,0.28);color:#fca5a5;}
+.bsep{width:1px;height:14px;background:rgba(255,255,255,0.06);}
+.br-pill{font-size:7px;color:#2a3a4a;padding:2px 7px;border:0.5px solid rgba(255,255,255,0.06);border-radius:2px;}
+
+.infowrap{display:flex;gap:12px;}
+.lente-side{width:18px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;padding-top:4px;}
+.lente-b{width:2px;border-radius:2px;background:linear-gradient(180deg,#f472b6 0%,#fb923c 50%,#a78bfa 100%);flex:1;min-height:480px;}
+.lente-t{font-size:7px;letter-spacing:0.14em;text-transform:uppercase;color:#f472b6;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;margin-top:10px;opacity:0.5;}
+
+.ig{flex:1;display:grid;grid-template-columns:96px repeat(5,1fr);gap:0;background:rgba(255,255,255,0.03);}
+.ig>*{border-right:0.5px solid rgba(255,255,255,0.04);border-bottom:0.5px solid rgba(255,255,255,0.04);}
+.ghdr{padding:10px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;}
+.ghdr-name{font-size:7px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;}
+.ghdr-yrs{font-size:6px;color:rgba(255,255,255,0.25);margin-top:1px;}
+.ghdr-thm{font-size:6px;margin-top:2px;opacity:0.55;}
+.llbl{display:flex;flex-direction:column;justify-content:center;padding:12px 10px;background:#0e1520;}
+.lnum{font-size:6px;letter-spacing:0.16em;text-transform:uppercase;color:#3ecfaa;margin-bottom:4px;font-weight:600;}
+.lnm{font-family:'Playfair Display',serif;font-size:10px;color:#eeeae0;line-height:1.2;}
+.ldsc{font-size:7px;color:#2a3a4a;margin-top:3px;line-height:1.4;}
+.ldim{font-size:6.5px;color:#f472b6;margin-top:4px;font-style:italic;opacity:0.65;}
+.ic{padding:10px 9px;display:flex;flex-direction:column;gap:3px;background:#0e1520;}
+.ic-t{font-size:7.5px;font-weight:600;color:#c8c4bc;margin-bottom:3px;}
+.ii{display:flex;align-items:flex-start;gap:4px;font-size:7px;color:#4a5a68;line-height:1.4;}
+.id{width:3px;height:3px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.dk{font-size:6px;letter-spacing:0.08em;text-transform:uppercase;background:rgba(129,140,248,0.1);border:0.5px solid rgba(129,140,248,0.28);color:#a5b4fc;padding:1.5px 5px;border-radius:2px;display:inline-block;margin-bottom:3px;width:fit-content;}
+.ps{font-size:6px;letter-spacing:0.08em;text-transform:uppercase;background:rgba(244,114,182,0.08);border:0.5px solid rgba(244,114,182,0.25);color:#f9a8d4;padding:1.5px 5px;border-radius:2px;display:inline-block;margin-bottom:3px;width:fit-content;}
+.tgi-row{grid-column:1/-1;background:rgba(62,207,170,0.04);padding:10px 12px;display:grid;grid-template-columns:96px repeat(5,1fr);gap:0;}
+.tgi-row>*{padding:0 8px;}
+.tgi-lbl{display:flex;flex-direction:column;gap:3px;padding:0!important;}
+.tgi-bdg{font-size:7px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(62,207,170,0.12);border:0.5px solid rgba(62,207,170,0.35);color:#3ecfaa;padding:2px 7px;border-radius:2px;display:inline-block;width:fit-content;}
+.tgi-dsc{font-size:7px;color:#2a4a3a;margin-top:3px;line-height:1.4;}
+.tgi-cl{display:flex;flex-direction:column;gap:3px;}
+.tgi-it{font-size:7px;color:#3a5a4a;line-height:1.35;display:flex;gap:4px;align-items:flex-start;}
+.tgi-d{width:3px;height:3px;border-radius:50%;background:#3ecfaa;margin-top:4px;flex-shrink:0;opacity:0.5;}
+.arr{grid-column:1/-1;display:flex;align-items:center;gap:8px;padding:6px 12px;background:#0e1520;}
+.arr-ln{flex:1;height:0.5px;background:rgba(62,207,170,0.08);}
+.arr-tx{font-size:7px;color:#3ecfaa;opacity:0.35;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;}
+.ileg-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px;}
+.ileg{display:flex;align-items:center;gap:4px;font-size:7px;color:#2a3a4a;}
+.ileg-d{width:5px;height:5px;border-radius:50%;}
+
+/* ==================== PÁGINA 4 — ROADMAP ==================== */
+.p4{padding:72px 56px 80px;position:relative;overflow:hidden;}
+.roadmap-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:56px;align-items:start;}
+.ri-text{font-size:11.5px;color:#6a7888;line-height:1.75;}
+.ri-stats{display:flex;flex-direction:column;gap:0;border-top:0.5px solid rgba(255,255,255,0.05);border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.rs{display:flex;align-items:center;gap:20px;padding:18px 0;border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.rs:last-child{border-bottom:none;}
+.rs-num{font-family:'Playfair Display',serif;font-size:36px;color:#3ecfaa;min-width:56px;}
+.rs-lbl{font-size:9px;color:#4a5a6a;line-height:1.5;}
+
+/* timeline visual */
+.tl-visual{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:rgba(255,255,255,0.03);margin-bottom:32px;}
+.rph{padding:32px 28px;border-right:0.5px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+.rph:last-child{border-right:none;}
+.rph-ghost{font-family:'Playfair Display',serif;font-size:96px;font-weight:600;color:rgba(255,255,255,0.025);position:absolute;top:-16px;right:12px;line-height:1;pointer-events:none;}
+.rph-week{font-size:7px;letter-spacing:0.16em;text-transform:uppercase;color:#3ecfaa;margin-bottom:8px;font-weight:500;}
+.rph-title{font-family:'Playfair Display',serif;font-size:16px;color:#eeeae0;margin-bottom:4px;}
+.rph-concept{font-size:8px;color:#3a4a5a;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;}
+.rph-div{width:20px;height:1px;background:rgba(62,207,170,0.3);margin-bottom:16px;}
+.rph-dels{display:flex;flex-direction:column;gap:6px;flex:1;}
+.rdi{display:flex;align-items:flex-start;gap:5px;font-size:9px;color:#5a6878;line-height:1.5;}
+.rdd{width:3px;height:3px;border-radius:50%;background:#3ecfaa;margin-top:5px;flex-shrink:0;opacity:0.6;}
+.rph-ms{margin-top:16px;padding:8px 10px;background:rgba(62,207,170,0.05);font-size:7.5px;color:#3a5a4a;font-style:italic;line-height:1.5;border-left:2px solid rgba(62,207,170,0.25);}
+
+/* barra de progresso */
+.tl-bar{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin-bottom:8px;}
+.tl-s{height:3px;border-radius:1px;}
+.tl-ticks{display:grid;grid-template-columns:repeat(8,1fr);}
+.tl-tk{font-size:7px;color:#2a3a4a;letter-spacing:0.06em;}
+
+/* FOOTER */
+.footer-g{padding:24px 56px;background:#080d14;display:flex;justify-content:space-between;align-items:center;}
+.fg-brand{font-family:'Playfair Display',serif;font-size:14px;color:rgba(238,234,224,0.15);font-style:italic;}
+.fg-note{font-size:7.5px;color:#1e2a38;letter-spacing:0.08em;}
+</style>
+
+<div style="background:#0e1520;min-width:900px;">
+
+<!-- ========== P1: APRESENTAÇÃO ========== -->
+<div class="p1">
+  <div class="sec-num">01</div>
+  <div class="p1-bg"></div>
+
+  <div class="p1-hero">
+    <div class="p1-tag"><div class="p1-tag-dot"></div>Wisemetrics × FGV · Proposta de MVP</div>
+    <div class="p1-headline">O que cada geração<br>pensa sobre <em>aprender</em><br>no Brasil de hoje</div>
+    <div class="p1-lead">A FGV opera em um mercado onde quatro gerações tomam decisões de educação com motivações, medos e significados completamente distintos. Este MVP propõe um sistema de inteligência capaz de capturar, processar e interpretar esses sinais, transformando comportamento em direção estratégica para comunicação, produto e posicionamento institucional.</div>
+  </div>
+
+  <div class="p1-stats">
+    <div class="p1-stat">
+      <div class="p1-stat-num">4+</div>
+      <div class="p1-stat-label">Gerações monitoradas simultaneamente, da Alfa aos Boomers</div>
+    </div>
+    <div class="p1-stat">
+      <div class="p1-stat-num">84%</div>
+      <div class="p1-stat-label">dos compartilhamentos sobre educação acontecem no Dark Social, invisíveis para o mercado</div>
+    </div>
+    <div class="p1-stat">
+      <div class="p1-stat-num">50k+</div>
+      <div class="p1-stat-label">entrevistas anuais TGI Kantar validam os insights com representatividade nacional</div>
+    </div>
+  </div>
+
+  <div class="p1-cols">
+    <div class="pcol">
+      <div class="pcol-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="8" stroke="#3ecfaa" stroke-width="0.7" opacity="0.5"/>
+          <circle cx="14" cy="14" r="13" stroke="#3ecfaa" stroke-width="0.4" stroke-dasharray="3 2" opacity="0.25"/>
+          <circle cx="14" cy="14" r="2.5" fill="#3ecfaa" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="pcol-divider"></div>
+      <div class="pcol-title">O Problema</div>
+      <div class="pcol-text">A FGV toma decisões de comunicação e produto sem uma visão integrada do que cada geração realmente pensa sobre educação. Os dados existem, mas estão dispersos e não interpretados.</div>
+    </div>
+    <div class="pcol">
+      <div class="pcol-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M3 22 L8 14 L13 17 L18 9 L23 5" stroke="#3ecfaa" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+          <path d="M3 22 L8 14 L13 17 L18 9 L23 5 L23 24 L3 24Z" fill="rgba(62,207,170,0.05)"/>
+          <circle cx="23" cy="5" r="2" fill="#3ecfaa" opacity="0.85"/>
+        </svg>
+      </div>
+      <div class="pcol-divider"></div>
+      <div class="pcol-title">A Solução</div>
+      <div class="pcol-text">Um sistema de inteligência geracional que integra sinais digitais, Dark Social e TGI Kantar, processados por IA e ciências do comportamento, entregando insights acionáveis em tempo real.</div>
+    </div>
+    <div class="pcol">
+      <div class="pcol-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <polygon points="14,3 25,18 3,18" fill="rgba(244,114,182,0.07)" stroke="#f472b6" stroke-width="0.7" opacity="0.8"/>
+          <circle cx="14" cy="12" r="2" fill="#f472b6" opacity="0.75"/>
+        </svg>
+      </div>
+      <div class="pcol-divider"></div>
+      <div class="pcol-title">O Diferencial</div>
+      <div class="pcol-text">Não apenas monitoramos dados, interpretamos comportamento. A lente das ciências do consumo transforma números em narrativas, revelando o significado por trás do dado e o gatilho emocional por trás de cada decisão.</div>
+    </div>
+  </div>
+
+  <div class="p1-pilares" style="margin-top:56px;">
+    <div class="pillar">
+      <div class="pillar-num">Pilar 01</div>
+      <div class="pillar-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="4" stroke="#3ecfaa" stroke-width="0.7" opacity="0.8"/>
+          <line x1="2" y1="12" x2="8" y2="12" stroke="#3ecfaa" stroke-width="0.6" opacity="0.4"/>
+          <line x1="16" y1="12" x2="22" y2="12" stroke="#3ecfaa" stroke-width="0.6" opacity="0.4"/>
+          <line x1="12" y1="2" x2="12" y2="8" stroke="#3ecfaa" stroke-width="0.6" opacity="0.4"/>
+          <line x1="12" y1="16" x2="12" y2="22" stroke="#3ecfaa" stroke-width="0.6" opacity="0.4"/>
+          <circle cx="12" cy="12" r="1.5" fill="#3ecfaa" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="pillar-title">IA & Machine Learning</div>
+      <div class="pillar-text">NLP, LLMs e modelos de ML processam grandes volumes de dados não estruturados em sinais interpretáveis e acionáveis.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Pilar 02</div>
+      <div class="pillar-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <polygon points="12,3 22,16 2,16" fill="rgba(244,114,182,0.07)" stroke="#f472b6" stroke-width="0.6" opacity="0.7"/>
+          <line x1="2" y1="16" x2="22" y2="16" stroke="#f472b6" stroke-width="0.3" opacity="0.25"/>
+          <circle cx="12" cy="11" r="1.5" fill="#f472b6" opacity="0.75"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Ciências do Comportamento</div>
+      <div class="pillar-text">Antropologia, psicologia do consumo e semiótica como camada interpretativa que transforma dado em compreensão humana.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Pilar 03</div>
+      <div class="pillar-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="5" width="14" height="10" rx="2.5" fill="rgba(129,140,248,0.1)" stroke="#818cf8" stroke-width="0.6" opacity="0.7"/>
+          <rect x="2" y="5" width="8" height="10" rx="2.5" fill="none" stroke="#818cf8" stroke-width="0.4" stroke-dasharray="2 2" opacity="0.35"/>
+          <circle cx="4" cy="17" r="1.5" fill="#818cf8" opacity="0.35"/>
+          <rect x="10" y="7" width="12" height="8" rx="2" fill="none" stroke="#818cf8" stroke-width="0.4" stroke-dasharray="2 2" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Dark Social Intelligence</div>
+      <div class="pillar-text">Monitoramento de conversas em canais privados, o território onde 84% das decisões de educação são discutidas.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">Pilar 04</div>
+      <div class="pillar-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="4" cy="12" r="1.5" fill="#3ecfaa" opacity="0.3"/>
+          <circle cx="8" cy="8" r="1.5" fill="#3ecfaa" opacity="0.5"/>
+          <circle cx="12" cy="6" r="1.5" fill="#3ecfaa" opacity="0.65"/>
+          <circle cx="16" cy="8" r="1.5" fill="#3ecfaa" opacity="0.75"/>
+          <circle cx="20" cy="6" r="1.5" fill="#3ecfaa" opacity="0.85"/>
+          <line x1="4" y1="12" x2="20" y2="6" stroke="#3ecfaa" stroke-width="0.5" opacity="0.3"/>
+          <circle cx="20" cy="6" r="2.5" fill="#3ecfaa" opacity="0.2" stroke="#3ecfaa" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="pillar-title">TGI Kantar</div>
+      <div class="pillar-text">Validação estatística com representatividade nacional, garantindo que insights digitais reflitam o Brasil real.</div>
+    </div>
+  </div>
+
+  <div class="partner">
+    <span class="partner-lbl">Parceiro estratégico de dados</span>
+    <span class="partner-badge">TGI Kantar · Representatividade nacional · 50k+ entrevistas anuais</span>
+  </div>
+</div>
+
+<!-- SEP -->
+<div class="sec-sep"><div class="sec-sep-line"></div><span class="sec-sep-label">02 · Glossário metodológico</span><div class="sec-sep-line"></div></div>
+
+<!-- ========== P2: GLOSSÁRIO ========== -->
+<div class="p2">
+  <div class="sec-num">02</div>
+  <div class="ey"><div class="ey-ln"></div><div class="ey-dt"></div><span class="ey-tx">Glossário metodológico</span></div>
+  <div style="font-family:'Playfair Display',serif;font-size:36px;color:#eeeae0;font-weight:400;line-height:1.05;margin-bottom:6px;">Os conceitos que fazem o produto <em style="color:#3ecfaa;font-style:italic;">funcionar</em></div>
+  <div style="font-size:10px;color:#3a4a5a;margin-bottom:40px;letter-spacing:0.04em;">Um guia para entender a metodologia por trás da inteligência geracional em educação</div>
+
+  <div class="glos-grid">
+    <div class="gcard">
+      <div class="gcard-illus">
+        <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+          <rect x="4" y="10" width="36" height="20" rx="5" fill="rgba(129,140,248,0.1)" stroke="#818cf8" stroke-width="0.8" opacity="0.85"/>
+          <rect x="14" y="15" width="10" height="8" rx="1.5" fill="none" stroke="#a5b4fc" stroke-width="0.6" opacity="0.75"/>
+          <path d="M16 15 C16 12 24 12 24 15" stroke="#a5b4fc" stroke-width="0.6" fill="none" opacity="0.75"/>
+          <circle cx="19" cy="19" r="1.2" fill="#a5b4fc" opacity="0.75"/>
+          <circle cx="10" cy="32" r="2.5" fill="#818cf8" opacity="0.35"/>
+          <rect x="54" y="7" width="36" height="20" rx="5" fill="rgba(129,140,248,0.04)" stroke="#818cf8" stroke-width="0.5" stroke-dasharray="3 2" opacity="0.38"/>
+          <text x="60" y="19" font-size="5" fill="#a5b4fc" opacity="0.22" font-family="Inter,sans-serif">invisível</text>
+          <rect x="24" y="48" width="28" height="14" rx="4" fill="none" stroke="#818cf8" stroke-width="0.4" stroke-dasharray="2 3" opacity="0.18"/>
+          <text x="6" y="65" font-size="5.5" fill="#818cf8" opacity="0.15" font-family="Inter,sans-serif">84% dos compartilhamentos</text>
+        </svg>
+      </div>
+      <span class="gtag t-dark">Fonte de dados</span>
+      <div class="gterm">Dark Social</div>
+      <div class="gdiv"></div>
+      <div class="gdef">Compartilhamentos em canais privados e criptografados como WhatsApp, invisíveis para analytics tradicional. Representam 84% de todo o compartilhamento online.</div>
+      <div class="gapp-lbl">No contexto FGV</div>
+      <div class="gapp">Conversas sobre qual faculdade escolher acontecem no WhatsApp, fora do radar do mercado.</div>
+    </div>
+    <div class="gcard">
+      <div class="gcard-illus">
+        <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+          <circle cx="10" cy="18" r="1.8" fill="#3ecfaa" opacity="0.18"/>
+          <circle cx="16" cy="36" r="1.8" fill="#3ecfaa" opacity="0.18"/>
+          <circle cx="10" cy="54" r="1.8" fill="#3ecfaa" opacity="0.18"/>
+          <line x1="24" y1="36" x2="42" y2="36" stroke="#3ecfaa" stroke-width="0.5" opacity="0.22"/>
+          <polygon points="42,34 47,36 42,38" fill="#3ecfaa" opacity="0.22"/>
+          <circle cx="58" cy="12" r="2" fill="#3ecfaa" opacity="0.7"/>
+          <circle cx="68" cy="12" r="2" fill="#3ecfaa" opacity="0.7"/>
+          <circle cx="78" cy="12" r="2" fill="#3ecfaa" opacity="0.7"/>
+          <circle cx="88" cy="12" r="2" fill="#3ecfaa" opacity="0.7"/>
+          <circle cx="58" cy="22" r="2" fill="#3ecfaa" opacity="0.6"/>
+          <circle cx="68" cy="22" r="2" fill="#3ecfaa" opacity="0.6"/>
+          <circle cx="78" cy="22" r="2" fill="#3ecfaa" opacity="0.6"/>
+          <circle cx="88" cy="22" r="2" fill="#3ecfaa" opacity="0.6"/>
+          <circle cx="96" cy="22" r="2" fill="#3ecfaa" opacity="0.6"/>
+          <circle cx="58" cy="32" r="2" fill="#3ecfaa" opacity="0.5"/>
+          <circle cx="68" cy="32" r="2" fill="#3ecfaa" opacity="0.5"/>
+          <circle cx="78" cy="32" r="2" fill="#3ecfaa" opacity="0.5"/>
+          <circle cx="58" cy="42" r="2" fill="#3ecfaa" opacity="0.35"/>
+          <circle cx="68" cy="42" r="2" fill="#3ecfaa" opacity="0.35"/>
+          <text x="55" y="60" font-size="5" fill="#3ecfaa" opacity="0.3" font-family="Inter,sans-serif">50k entrevistas · Brasil</text>
+        </svg>
+      </div>
+      <span class="gtag t-tgi">Validação estatística</span>
+      <div class="gterm">TGI Kantar</div>
+      <div class="gdiv"></div>
+      <div class="gdef">Base com 50k+ entrevistas anuais no Brasil, representatividade projetável para toda a população. Transforma amostras digitais em personas com peso demográfico real.</div>
+      <div class="gapp-lbl">No contexto FGV</div>
+      <div class="gapp">Não apenas "a Gen Z fala assim", mas "X milhões de jovens brasileiros pensam assim sobre educação".</div>
+    </div>
+    <div class="gcard">
+      <div class="gcard-illus">
+        <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+          <line x1="2" y1="18" x2="28" y2="28" stroke="#a78bfa" stroke-width="0.8" opacity="0.38"/>
+          <line x1="2" y1="30" x2="28" y2="33" stroke="#a78bfa" stroke-width="0.8" opacity="0.38"/>
+          <line x1="2" y1="44" x2="28" y2="38" stroke="#a78bfa" stroke-width="0.7" opacity="0.32"/>
+          <line x1="2" y1="56" x2="28" y2="43" stroke="#a78bfa" stroke-width="0.6" opacity="0.26"/>
+          <circle cx="48" cy="36" r="12" fill="rgba(167,139,250,0.08)" stroke="#a78bfa" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="48" cy="36" r="4" fill="#a78bfa" opacity="0.85"/>
+          <line x1="60" y1="26" x2="96" y2="26" stroke="#c4b5fd" stroke-width="0.9" opacity="0.65"/>
+          <line x1="60" y1="33" x2="96" y2="33" stroke="#c4b5fd" stroke-width="0.9" opacity="0.6"/>
+          <line x1="60" y1="40" x2="86" y2="40" stroke="#c4b5fd" stroke-width="0.9" opacity="0.5"/>
+          <line x1="60" y1="47" x2="76" y2="47" stroke="#c4b5fd" stroke-width="0.9" opacity="0.4"/>
+          <text x="2" y="12" font-size="5" fill="#a78bfa" opacity="0.32" font-family="Inter,sans-serif">ruído</text>
+          <text x="74" y="20" font-size="5" fill="#c4b5fd" opacity="0.5" font-family="Inter,sans-serif">sinal</text>
+        </svg>
+      </div>
+      <span class="gtag t-nlp">Tecnologia de IA</span>
+      <div class="gterm">NLP & LLMs</div>
+      <div class="gdiv"></div>
+      <div class="gdef">Processamento de Linguagem Natural e Large Language Models transformam texto caótico em sinais organizados, identificando padrões, emoções e intenções não declaradas.</div>
+      <div class="gapp-lbl">No contexto FGV</div>
+      <div class="gapp">Lê milhares de conversas sobre educação e extrai o que as gerações sentem além do que dizem.</div>
+    </div>
+    <div class="gcard" style="border-right:none;">
+      <div class="gcard-illus">
+        <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+          <rect x="8" y="22" width="30" height="28" rx="4" fill="rgba(245,158,11,0.08)" stroke="#fcd34d" stroke-width="1" opacity="0.9"/>
+          <text x="23" y="38" font-size="6" fill="#fcd34d" text-anchor="middle" opacity="0.5" font-family="Inter,sans-serif">2018</text>
+          <rect x="32" y="12" width="30" height="28" rx="4" fill="rgba(245,158,11,0.04)" stroke="#fcd34d" stroke-width="0.6" stroke-dasharray="3 2" opacity="0.52"/>
+          <text x="47" y="28" font-size="6" fill="#fcd34d" text-anchor="middle" opacity="0.35" font-family="Inter,sans-serif">2025</text>
+          <line x1="38" y1="22" x2="52" y2="14" stroke="#fcd34d" stroke-width="0.8" opacity="0.5"/>
+          <polygon points="52,11 57,15 50,16" fill="#fcd34d" opacity="0.5"/>
+          <line x1="6" y1="60" x2="94" y2="60" stroke="#fcd34d" stroke-width="0.4" opacity="0.15"/>
+          <text x="62" y="56" font-size="5" fill="#fcd34d" opacity="0.35" font-family="Inter,sans-serif">Δ significado</text>
+        </svg>
+      </div>
+      <span class="gtag t-des">Antropologia do consumo</span>
+      <div class="gterm">Deslocamento Cultural</div>
+      <div class="gdiv"></div>
+      <div class="gdef">Momento em que o significado simbólico de um produto muda para um grupo. Aparece nos dados de venda quando já é tarde demais para reagir.</div>
+      <div class="gapp-lbl">No contexto FGV</div>
+      <div class="gapp">O que o MBA significa para Millennials em 2025 é diferente de 2018. Identificar isso antes é vantagem decisiva.</div>
+    </div>
+  </div>
+
+  <div class="glos-grid-b">
+    <div class="gcard">
+      <div class="gcard-illus">
+        <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+          <line x1="4" y1="36" x2="32" y2="36" stroke="#eeeae0" stroke-width="1.4" opacity="0.4"/>
+          <polygon points="32,14 32,58 60,36" fill="rgba(244,114,182,0.07)" stroke="#f472b6" stroke-width="0.9" opacity="0.8"/>
+          <line x1="60" y1="36" x2="90" y2="20" stroke="#a78bfa" stroke-width="0.9" opacity="0.7"/>
+          <line x1="60" y1="36" x2="90" y2="27" stroke="#3ecfaa" stroke-width="0.9" opacity="0.7"/>
+          <line x1="60" y1="36" x2="90" y2="34" stroke="#fcd34d" stroke-width="0.9" opacity="0.7"/>
+          <line x1="60" y1="36" x2="90" y2="41" stroke="#fb923c" stroke-width="0.9" opacity="0.7"/>
+          <line x1="60" y1="36" x2="88" y2="50" stroke="#f9a8d4" stroke-width="0.9" opacity="0.6"/>
+          <line x1="60" y1="36" x2="86" y2="58" stroke="#6ee7b7" stroke-width="0.9" opacity="0.55"/>
+          <text x="91" y="21" font-size="4.5" fill="#a78bfa" opacity="0.65" font-family="Inter,sans-serif">IA</text>
+          <text x="91" y="28" font-size="4.5" fill="#3ecfaa" opacity="0.65" font-family="Inter,sans-serif">cultura</text>
+          <text x="91" y="35" font-size="4.5" fill="#fcd34d" opacity="0.65" font-family="Inter,sans-serif">emoção</text>
+          <text x="91" y="42" font-size="4.5" fill="#fb923c" opacity="0.65" font-family="Inter,sans-serif">região</text>
+          <text x="89" y="51" font-size="4.5" fill="#f9a8d4" opacity="0.6" font-family="Inter,sans-serif">geração</text>
+          <text x="87" y="59" font-size="4.5" fill="#6ee7b7" opacity="0.55" font-family="Inter,sans-serif">propósito</text>
+          <text x="2" y="30" font-size="4.5" fill="#eeeae0" opacity="0.22" font-family="Inter,sans-serif">dado</text>
+        </svg>
+      </div>
+      <span class="gtag t-len">Diferencial Wisemetrics</span>
+      <div class="gterm">Lente Comportamental</div>
+      <div class="gdiv"></div>
+      <div class="gdef">Como um prisma que decompõe luz em espectro, a lente comportamental decompõe dados brutos em suas dimensões de significado: cultura, emoção, geração, região e propósito.</div>
+      <div class="gapp-lbl">No contexto FGV</div>
+      <div class="gapp">Os dados mostram o quê. A lente comportamental explica o porquê.</div>
+    </div>
+    <div class="gcard">
+      <div class="gcard-illus">
+        <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+          <polygon points="6,10 18,8 20,18 8,20" fill="rgba(52,211,153,0.07)" stroke="#6ee7b7" stroke-width="0.6" opacity="0.65"/>
+          <polygon points="78,8 92,10 90,22 76,18" fill="rgba(52,211,153,0.07)" stroke="#6ee7b7" stroke-width="0.6" opacity="0.65"/>
+          <polygon points="4,52 16,48 20,60 6,62" fill="rgba(52,211,153,0.06)" stroke="#6ee7b7" stroke-width="0.5" opacity="0.5"/>
+          <polygon points="82,50 94,54 90,64 78,62" fill="rgba(52,211,153,0.06)" stroke="#6ee7b7" stroke-width="0.5" opacity="0.5"/>
+          <line x1="18" y1="15" x2="36" y2="30" stroke="#6ee7b7" stroke-width="0.5" opacity="0.28" stroke-dasharray="2 2"/>
+          <line x1="82" y1="15" x2="64" y2="30" stroke="#6ee7b7" stroke-width="0.5" opacity="0.28" stroke-dasharray="2 2"/>
+          <line x1="12" y1="56" x2="36" y2="42" stroke="#6ee7b7" stroke-width="0.5" opacity="0.28" stroke-dasharray="2 2"/>
+          <line x1="86" y1="56" x2="64" y2="42" stroke="#6ee7b7" stroke-width="0.5" opacity="0.28" stroke-dasharray="2 2"/>
+          <rect x="32" y="28" width="36" height="24" rx="4" fill="rgba(52,211,153,0.08)" stroke="#6ee7b7" stroke-width="0.8" opacity="0.8"/>
+          <line x1="41" y1="28" x2="41" y2="52" stroke="#6ee7b7" stroke-width="0.3" opacity="0.3"/>
+          <line x1="50" y1="28" x2="50" y2="52" stroke="#6ee7b7" stroke-width="0.3" opacity="0.3"/>
+          <line x1="59" y1="28" x2="59" y2="52" stroke="#6ee7b7" stroke-width="0.3" opacity="0.3"/>
+          <line x1="32" y1="36" x2="68" y2="36" stroke="#6ee7b7" stroke-width="0.3" opacity="0.3"/>
+          <line x1="32" y1="44" x2="68" y2="44" stroke="#6ee7b7" stroke-width="0.3" opacity="0.3"/>
+          <circle cx="50" cy="40" r="4" fill="#6ee7b7" opacity="0.65"/>
+        </svg>
+      </div>
+      <span class="gtag t-etn">Metodologia</span>
+      <div class="gterm">Escuta Etnográfica Digital</div>
+      <div class="gdiv"></div>
+      <div class="gdef">Aplica a metodologia da etnografia ao ambiente digital. Coleta fragmentos dispersos de comportamento online e os organiza em compreensão profunda sobre um grupo.</div>
+      <div class="gapp-lbl">No contexto FGV</div>
+      <div class="gapp">Revela os medos não declarados e as tensões que moldam decisões de matrícula de cada geração.</div>
+    </div>
+    <div class="gcard" style="border-right:none;">
+      <div class="gcard-illus">
+        <svg width="100" height="72" viewBox="0 0 100 72" fill="none">
+          <circle cx="50" cy="36" r="4" fill="#fb923c" opacity="0.9"/>
+          <line x1="50" y1="32" x2="50" y2="10" stroke="#fb923c" stroke-width="1.4" opacity="0.7"/>
+          <line x1="50" y1="40" x2="50" y2="64" stroke="#fb923c" stroke-width="0.6" opacity="0.3"/>
+          <line x1="53" y1="33" x2="74" y2="16" stroke="#fb923c" stroke-width="1.1" opacity="0.6"/>
+          <line x1="47" y1="33" x2="26" y2="16" stroke="#fb923c" stroke-width="0.8" opacity="0.45"/>
+          <line x1="53" y1="39" x2="76" y2="56" stroke="#fb923c" stroke-width="0.5" opacity="0.25"/>
+          <line x1="53" y1="35" x2="88" y2="34" stroke="#fb923c" stroke-width="1" opacity="0.55"/>
+          <line x1="47" y1="35" x2="12" y2="34" stroke="#fb923c" stroke-width="0.5" opacity="0.28"/>
+          <polygon points="50,8 52,13 48,13" fill="#fb923c" opacity="0.7"/>
+          <polygon points="74,14 77,19 72,18" fill="#fb923c" opacity="0.55"/>
+          <polygon points="88,32 91,36 88,34 85,36" fill="#fb923c" opacity="0.5"/>
+          <text x="52" y="8" font-size="4.5" fill="#fdba74" opacity="0.6" font-family="Inter,sans-serif">medo</text>
+          <text x="78" y="15" font-size="4.5" fill="#fdba74" opacity="0.5" font-family="Inter,sans-serif">aspiração</text>
+          <text x="78" y="34" font-size="4.5" fill="#fdba74" opacity="0.5" font-family="Inter,sans-serif">pertença</text>
+          <circle cx="50" cy="36" r="13" stroke="#fb923c" stroke-width="0.4" fill="none" opacity="0.18"/>
+          <circle cx="50" cy="36" r="24" stroke="#fb923c" stroke-width="0.3" fill="none" opacity="0.08"/>
+        </svg>
+      </div>
+      <span class="gtag t-gat">Psicologia do consumo</span>
+      <div class="gterm">Gatilho Emocional</div>
+      <div class="gdiv"></div>
+      <div class="gdef">Estado emocional que ativa uma decisão de consumo. Decisões de educação são disparadas por medo de ficar para trás, ansiedade, pertencimento ou busca de propósito.</div>
+      <div class="gapp-lbl">No contexto FGV</div>
+      <div class="gapp">Identificar o gatilho ativo em cada geração permite comunicar no momento certo com a mensagem certa.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SEP -->
+<div class="sec-sep"><div class="sec-sep-line"></div><span class="sec-sep-label">03 · Full picture · Anatomia do produto</span><div class="sec-sep-line"></div></div>
+
+<!-- ========== P3: INFOGRÁFICO ========== -->
+<div class="p3">
+  <div class="sec-num">03</div>
+  <div class="ey"><div class="ey-ln"></div><div class="ey-dt"></div><span class="ey-tx">Full picture · Anatomia do produto</span></div>
+  <div style="font-family:'Playfair Display',serif;font-size:36px;color:#eeeae0;font-weight:400;line-height:1.05;margin-bottom:6px;">O produto <em style="color:#3ecfaa;font-style:italic;">por dentro</em></div>
+  <div style="font-size:10px;color:#3a4a5a;margin-bottom:28px;letter-spacing:0.04em;">Três camadas de inteligência cruzadas por cinco gerações · Dark Social · TGI Kantar · Lente comportamental</div>
+
+  <div class="gen-axis">
+    <span class="gen-lbl">Gerações</span>
+    <span class="gp ga">Gen Alfa</span>
+    <span class="gp gz">Gen Z</span>
+    <span class="gp gm">Millennials</span>
+    <span class="gp gx">Gen X</span>
+    <span class="gp gbr">Boomers</span>
+    <div class="bsep"></div>
+    <span class="gen-lbl">5 Brasis</span>
+    <span class="br-pill">Norte</span>
+    <span class="br-pill">Nordeste</span>
+    <span class="br-pill">Centro-Oeste</span>
+    <span class="br-pill">Sudeste</span>
+    <span class="br-pill">Sul</span>
+  </div>
+
+  <div class="infowrap">
+    <div class="lente-side">
+      <div class="lente-b"></div>
+      <div class="lente-t">Lente comportamental · Ciências do Consumo</div>
+    </div>
+    <div class="ig">
+      <div style="background:#0e1520;border:none;"></div>
+      <div class="ghdr ga"><span class="ghdr-name">Gen Alfa</span><span class="ghdr-yrs">2010–hoje</span><span class="ghdr-thm">Pais decidem</span></div>
+      <div class="ghdr gz"><span class="ghdr-name">Gen Z</span><span class="ghdr-yrs">1997–2009</span><span class="ghdr-thm">Vestibular · Faculdade</span></div>
+      <div class="ghdr gm"><span class="ghdr-name">Millennials</span><span class="ghdr-yrs">1981–1996</span><span class="ghdr-thm">Pós · MBA · Mestrado</span></div>
+      <div class="ghdr gx"><span class="ghdr-name">Gen X</span><span class="ghdr-yrs">1965–1980</span><span class="ghdr-thm">Ed. executiva</span></div>
+      <div class="ghdr gbr"><span class="ghdr-name">Boomers</span><span class="ghdr-yrs">1946–1964</span><span class="ghdr-thm">Lifelong learning</span></div>
+
+      <div class="llbl"><div class="lnum">Camada 01</div><div class="lnm">Captação de Sinais</div><div class="ldsc">Digital · Dark Social · FGV</div><div class="ldim">Escuta etnográfica</div></div>
+      <div class="ic"><div class="ic-t">Sinais públicos</div><div class="ii"><span class="id" style="background:#c4b5fd"></span><span>YouTube educativo · buscas dos pais</span></div><div class="ii"><span class="id" style="background:#c4b5fd"></span><span>Fóruns de pais e educadores</span></div><div class="dk">Dark Social</div><div class="ii"><span class="id" style="background:#818cf8"></span><span>Grupos de pais no WhatsApp</span></div></div>
+      <div class="ic"><div class="ic-t">Sinais públicos</div><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>TikTok, Instagram, Reddit</span></div><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>Buscas ENEM e vestibular</span></div><div class="dk">Dark Social</div><div class="ii"><span class="id" style="background:#818cf8"></span><span>Grupos de estudantes no WhatsApp</span></div></div>
+      <div class="ic"><div class="ic-t">Sinais públicos</div><div class="ii"><span class="id" style="background:#fcd34d"></span><span>LinkedIn, Twitter/X · NPS FGV</span></div><div class="ii"><span class="id" style="background:#fcd34d"></span><span>Buscas MBA, mestrado, pós</span></div><div class="dk">Dark Social</div><div class="ii"><span class="id" style="background:#818cf8"></span><span>Grupos profissionais no WhatsApp</span></div></div>
+      <div class="ic"><div class="ic-t">Sinais públicos</div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>LinkedIn e fóruns executivos</span></div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Buscas requalificação e IA</span></div><div class="dk">Dark Social</div><div class="ii"><span class="id" style="background:#818cf8"></span><span>Grupos corporativos no WhatsApp</span></div></div>
+      <div class="ic"><div class="ic-t">Sinais públicos</div><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Facebook · Pesquisas FGV</span></div><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Buscas lifelong learning</span></div><div class="dk">Dark Social</div><div class="ii"><span class="id" style="background:#818cf8"></span><span>Grupos de interesse no WhatsApp</span></div></div>
+
+      <div class="tgi-row">
+        <div class="tgi-lbl"><div class="tgi-bdg">TGI Kantar</div><div class="tgi-dsc">Validação estatística nacional para todas as gerações</div></div>
+        <div class="tgi-cl"><div class="tgi-it"><span class="tgi-d"></span><span>Perfil de pais por classe e região</span></div><div class="tgi-it"><span class="tgi-d"></span><span>Aspirações projetadas</span></div></div>
+        <div class="tgi-cl"><div class="tgi-it"><span class="tgi-d"></span><span>Perfil demográfico de vestibulandos</span></div><div class="tgi-it"><span class="tgi-d"></span><span>Intenção de matrícula projetada</span></div></div>
+        <div class="tgi-cl"><div class="tgi-it"><span class="tgi-d"></span><span>Personas de decisores de MBA</span></div><div class="tgi-it"><span class="tgi-d"></span><span>ROI percebido por faixa de renda</span></div></div>
+        <div class="tgi-cl"><div class="tgi-it"><span class="tgi-d"></span><span>Perfil executivos em requalif.</span></div><div class="tgi-it"><span class="tgi-d"></span><span>Barreiras por região e setor</span></div></div>
+        <div class="tgi-cl"><div class="tgi-it"><span class="tgi-d"></span><span>Público lifelong learning nacional</span></div><div class="tgi-it"><span class="tgi-d"></span><span>Disposição por faixa e renda</span></div></div>
+      </div>
+
+      <div class="arr"><div class="arr-ln"></div><span class="arr-tx">▾ processamento comportamental</span><div class="arr-ln"></div></div>
+
+      <div class="llbl"><div class="lnum">Camada 02</div><div class="lnm">Inteligência</div><div class="ldsc">IA · NLP · Significado · Emoção</div><div class="ldim">Semiótica · Psicologia</div></div>
+      <div class="ic"><div class="ps">Gatilho emocional</div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Ansiedade dos pais sobre o futuro</span></div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Significado de "boa escola" por classe</span></div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Aspiração vs. realidade financeira</span></div></div>
+      <div class="ic"><div class="ps">Deslocamento cultural</div><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>Ansiedade vs. aspiração acadêmica</span></div><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>Percepção de valor da faculdade</span></div><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>Relação com mercado e IA</span></div></div>
+      <div class="ic"><div class="ps">Análise de significado</div><div class="ii"><span class="id" style="background:#fcd34d"></span><span>MBA como símbolo vs. commodity</span></div><div class="ii"><span class="id" style="background:#fcd34d"></span><span>Motivadores reais de requalificação</span></div><div class="ii"><span class="id" style="background:#fcd34d"></span><span>ROI percebido por perfil e região</span></div></div>
+      <div class="ic"><div class="ps">Gatilho de medo</div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Pressão por atualização frente à IA</span></div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Conflito tempo, custo e urgência</span></div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Relação com prestígio institucional</span></div></div>
+      <div class="ic"><div class="ps">Análise de propósito</div><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Educação como identidade pós-carreira</span></div><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Disposição para aprendizado contínuo</span></div><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Vínculo com prestígio da FGV</span></div></div>
+
+      <div class="arr"><div class="arr-ln"></div><span class="arr-tx">▾ entrega interpretada</span><div class="arr-ln"></div></div>
+
+      <div class="llbl"><div class="lnum">Camada 03</div><div class="lnm">Entregas</div><div class="ldsc">Narrativas e insights acionáveis</div><div class="ldim">Não dados — direção</div></div>
+      <div class="ic"><div class="ii"><span class="id" style="background:#c4b5fd"></span><span>Posicionamento para pais de futuros alunos</span></div><div class="ii"><span class="id" style="background:#c4b5fd"></span><span>Campanhas de marca de longo prazo</span></div><div class="ii"><span class="id" style="background:#c4b5fd"></span><span>Conteúdo por ansiedades reais</span></div></div>
+      <div class="ic"><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>Estratégia de captação vestibular</span></div><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>Comunicação digital e carreira</span></div><div class="ii"><span class="id" style="background:#3ecfaa"></span><span>Posicionamento frente ao medo de irrelevância</span></div></div>
+      <div class="ic"><div class="ii"><span class="id" style="background:#fcd34d"></span><span>Estratégia e precificação MBA e pós</span></div><div class="ii"><span class="id" style="background:#fcd34d"></span><span>Novos formatos educacionais</span></div><div class="ii"><span class="id" style="background:#fcd34d"></span><span>Comunicação orientada por ROI percebido</span></div></div>
+      <div class="ic"><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Educação executiva e corporate learning</span></div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Novos formatos ágeis e modulares</span></div><div class="ii"><span class="id" style="background:#f9a8d4"></span><span>Argumento de urgência vs. concorrentes</span></div></div>
+      <div class="ic"><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Programas de lifelong learning</span></div><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Posicionamento institucional de legado</span></div><div class="ii"><span class="id" style="background:#fca5a5"></span><span>Novos vínculos pós-carreira com a FGV</span></div></div>
+    </div>
+  </div>
+
+  <div class="ileg-row">
+    <div class="ileg"><div class="ileg-d" style="background:#818cf8"></div>Dark Social</div>
+    <div class="ileg"><div class="ileg-d" style="background:#3ecfaa"></div>TGI Kantar</div>
+    <div class="ileg"><div class="ileg-d" style="background:#f9a8d4"></div>Gatilhos emocionais</div>
+    <div class="ileg"><div class="ileg-d" style="background:#fcd34d"></div>Análise de significado</div>
+    <div class="ileg"><div class="ileg-d" style="background:#6ee7b7"></div>Escuta etnográfica</div>
+    <div class="ileg"><div class="ileg-d" style="background:#f472b6"></div>Lente comportamental</div>
+  </div>
+</div>
+
+<!-- SEP -->
+<div class="sec-sep"><div class="sec-sep-line"></div><span class="sec-sep-label">04 · Roadmap de execução</span><div class="sec-sep-line"></div></div>
+
+<!-- ========== P4: ROADMAP ========== -->
+<div class="p4">
+  <div class="sec-num">04</div>
+  <div class="ey"><div class="ey-ln"></div><div class="ey-dt"></div><span class="ey-tx">Roadmap de execução · MVP</span></div>
+  <div style="font-family:'Playfair Display',serif;font-size:36px;color:#eeeae0;font-weight:400;line-height:1.05;margin-bottom:6px;">Do zero ao MVP em <em style="color:#3ecfaa;font-style:italic;">aproximadamente dois meses</em></div>
+  <div style="font-size:10px;color:#3a4a5a;margin-bottom:48px;letter-spacing:0.04em;">Planejamento, desenvolvimento e validação em parceria com a FGV · DCOM</div>
+
+  <div class="roadmap-intro-grid">
+    <div class="ri-text">O MVP foi desenhado para ser executado em oito semanas, organizadas em quatro fases sequenciais. Cada fase tem entregas claras e um marco de validação conjunto com a equipe da FGV, garantindo que o produto seja refinado em parceria antes de qualquer expansão. A lógica é simples: começar focado, validar rápido, expandir com consistência.</div>
+    <div class="ri-stats">
+      <div class="rs"><div class="rs-num">8</div><div class="rs-lbl">Semanas de desenvolvimento · Do briefing ao MVP operacional</div></div>
+      <div class="rs"><div class="rs-num">4</div><div class="rs-lbl">Fases com marcos de validação em parceria com a FGV · DCOM</div></div>
+      <div class="rs"><div class="rs-num">5</div><div class="rs-lbl">Gerações monitoradas desde o primeiro ciclo de dados</div></div>
+    </div>
+  </div>
+
+  <div class="tl-visual">
+    <div class="rph">
+      <div class="rph-ghost">1</div>
+      <div class="rph-week">Semanas 1 e 2</div>
+      <div class="rph-title">Imersão & Arquitetura</div>
+      <div class="rph-concept">Fundação do produto</div>
+      <div class="rph-div"></div>
+      <div class="rph-dels">
+        <div class="rdi"><span class="rdd"></span><span>Briefing aprofundado com DCOM e FGV</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Mapeamento de fontes de dados disponíveis</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Definição de perguntas estratégicas por geração</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Arquitetura técnica do produto</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Configuração inicial do TGI Kantar</span></div>
+      </div>
+      <div class="rph-ms">Marco: aprovação da arquitetura e perguntas estratégicas pela FGV</div>
+    </div>
+    <div class="rph">
+      <div class="rph-ghost">2</div>
+      <div class="rph-week">Semanas 3 e 4</div>
+      <div class="rph-title">Captação & Estruturação</div>
+      <div class="rph-concept">Dados em movimento</div>
+      <div class="rph-div"></div>
+      <div class="rph-dels">
+        <div class="rdi"><span class="rdd"></span><span>Ativação das fontes digitais por geração</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Configuração do monitoramento Dark Social</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Integração dos dados primários da FGV</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Primeiro ciclo de coleta e limpeza</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Estruturação da base para NLP</span></div>
+      </div>
+      <div class="rph-ms">Marco: primeira base de dados estruturada e validada</div>
+    </div>
+    <div class="rph">
+      <div class="rph-ghost">3</div>
+      <div class="rph-week">Semanas 5 e 6</div>
+      <div class="rph-title">Inteligência & Interpretação</div>
+      <div class="rph-concept">Dados virando insights</div>
+      <div class="rph-div"></div>
+      <div class="rph-dels">
+        <div class="rdi"><span class="rdd"></span><span>Processamento NLP e sentimento por geração</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Cruzamento TGI Kantar · primeiras personas</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Mapeamento de gatilhos emocionais</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Identificação de deslocamentos culturais</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Primeiro relatório interpretado de insights</span></div>
+      </div>
+      <div class="rph-ms">Marco: apresentação dos primeiros insights à equipe FGV · DCOM</div>
+    </div>
+    <div class="rph" style="border-right:none;">
+      <div class="rph-ghost">4</div>
+      <div class="rph-week">Semanas 7 e 8</div>
+      <div class="rph-title">Dashboard & Entrega</div>
+      <div class="rph-concept">MVP operacional</div>
+      <div class="rph-div" style="background:rgba(62,207,170,0.5);"></div>
+      <div class="rph-dels">
+        <div class="rdi"><span class="rdd"></span><span>Dashboard de inteligência geracional ao vivo</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Visualizações por geração, região e tema</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Relatório inaugural com insights acionáveis</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Sessão de apresentação com DCOM · FGV</span></div>
+        <div class="rdi"><span class="rdd"></span><span>Roadmap de evolução pós-MVP</span></div>
+      </div>
+      <div class="rph-ms" style="border-left-color:rgba(62,207,170,0.5);color:#3ecfaa;">Marco: entrega oficial do MVP · início da operação contínua</div>
+    </div>
+  </div>
+
+  <div style="margin-top:8px;">
+    <div style="font-size:7.5px;letter-spacing:0.14em;text-transform:uppercase;color:#2a3a4a;margin-bottom:8px;">Linha do tempo · 8 semanas</div>
+    <div class="tl-bar">
+      <div class="tl-s" style="background:rgba(62,207,170,0.72);border-radius:2px 0 0 2px;"></div>
+      <div class="tl-s" style="background:rgba(62,207,170,0.62);"></div>
+      <div class="tl-s" style="background:rgba(62,207,170,0.5);"></div>
+      <div class="tl-s" style="background:rgba(62,207,170,0.44);"></div>
+      <div class="tl-s" style="background:rgba(62,207,170,0.36);"></div>
+      <div class="tl-s" style="background:rgba(62,207,170,0.3);"></div>
+      <div class="tl-s" style="background:rgba(62,207,170,0.24);"></div>
+      <div class="tl-s" style="background:rgba(62,207,170,0.2);border-radius:0 2px 2px 0;"></div>
+    </div>
+    <div class="tl-ticks">
+      <div class="tl-tk">Sem. 1</div><div class="tl-tk">Sem. 2</div><div class="tl-tk">Sem. 3</div><div class="tl-tk">Sem. 4</div>
+      <div class="tl-tk">Sem. 5</div><div class="tl-tk">Sem. 6</div><div class="tl-tk">Sem. 7</div><div class="tl-tk">Sem. 8</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-g">
+  <div class="fg-brand">Wisemetrics.</div>
+  <div class="fg-note">Inteligência Geracional em Educação · MVP para FGV · wisemetrics.in</div>
+</div>
+
+</div>

@@ -1,0 +1,17 @@
+source:
+  id: rss
+  type: live
+  adapter: RssAdapter
+  schedule: "0 9 * * *"
+  platform: rss
+  config:
+    feeds:
+      - url: https://www.gov.br/mec/pt-br/rss
+        label: MEC
+      - url: https://www.estadao.com.br/rss/educacao
+        label: Estadão Educação
+  generation_mapping:
+    rule: keyword_classifier
+    fallback: llm_classify
+  outputs:
+    entity: raw_signals

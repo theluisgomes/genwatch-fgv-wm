@@ -1,0 +1,15 @@
+ingestion:
+  dedup:
+    field: content_hash
+    algorithm: sha256
+  language:
+    default: pt-BR
+    detect: true
+  transforms:
+    - strip_html
+    - normalize_whitespace
+    - truncate:
+        max_length: 10000
+
+schedules:
+  from_sources: true

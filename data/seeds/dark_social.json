@@ -1,0 +1,23 @@
+[
+  {
+    "source_id": "dark_social_stub",
+    "platform": "whatsapp",
+    "text": "Alguém sabe se a FGV ainda vale a pena para o vestibular do meu filho?",
+    "generation_hint": "alfa",
+    "region_hint": "sudeste"
+  },
+  {
+    "source_id": "dark_social_stub",
+    "platform": "whatsapp",
+    "text": "O pessoal do ENEM tá dizendo que faculdade não garante mais emprego.",
+    "generation_hint": "z",
+    "region_hint": "nordeste"
+  },
+  {
+    "source_id": "dark_social_stub",
+    "platform": "whatsapp",
+    "text": "Vale fazer MBA agora ou esperar o mercado estabilizar?",
+    "generation_hint": "millennial",
+    "region_hint": "sudeste"
+  }
+]

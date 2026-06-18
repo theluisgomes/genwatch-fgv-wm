@@ -1,0 +1,19 @@
+source:
+  id: google_trends
+  type: live
+  adapter: GoogleTrendsAdapter
+  schedule: "0 8 * * *"
+  platform: google_trends
+  config:
+    keywords:
+      - ENEM
+      - vestibular
+      - MBA
+      - pós-graduação
+      - educação executiva
+      - lifelong learning
+    geo: BR
+  generation_mapping:
+    rule: keyword_classifier
+  outputs:
+    entity: raw_signals

@@ -1,0 +1,12 @@
+source:
+  id: dark_social_stub
+  type: stub
+  adapter: DarkSocialStubAdapter
+  schedule: "0 10 * * *"
+  platform: whatsapp
+  config:
+    fixture_file: data/seeds/dark_social.json
+  generation_mapping:
+    rule: fixture
+  outputs:
+    entity: raw_signals

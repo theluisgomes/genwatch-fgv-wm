@@ -1,0 +1,25 @@
+design_tokens:
+  colors:
+    background: "#0e1520"
+    background_footer: "#080d14"
+    foreground: "#eeeae0"
+    muted: "#6a7888"
+    accent: "#3ecfaa"
+    border: "rgba(255,255,255,0.06)"
+    generations:
+      alfa: "#c4b5fd"
+      z: "#3ecfaa"
+      millennial: "#fcd34d"
+      x: "#f9a8d4"
+      boomer: "#fca5a5"
+    sources:
+      dark_social: "#818cf8"
+      tgi: "#3ecfaa"
+      emotional: "#f9a8d4"
+      meaning: "#fcd34d"
+      ethnographic: "#6ee7b7"
+      behavioral: "#f472b6"
+  fonts:
+    sans: "Inter, sans-serif"
+    display: '"Google Sans Variable", "Google Sans", sans-serif'
+  google_fonts: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"

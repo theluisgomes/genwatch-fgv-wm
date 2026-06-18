@@ -1,0 +1,15 @@
+phase:
+  id: 2
+  name: Captação & Estruturação
+  weeks: [3, 4]
+  gate: first_dataset_validated
+
+acceptance_criteria:
+  - spec: sources/_adapter_contract.yaml exists
+  - spec: sources include 4 live and 3 stub adapters
+  - spec: pipeline/ingestion.yaml validates
+  - spec: pipeline/classification.yaml validates
+  - test: source adapter contract tests pass
+  - test: ingestion adapters return records
+  - deliverable: structured raw signals available for NLP
+  - milestone: first validated dataset across 5 generations

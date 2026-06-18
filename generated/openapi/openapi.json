@@ -1,0 +1,129 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GenWatch",
+    "version": "0.1.0-mvp"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "summary": "GET /api/v1/health",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/generations": {
+      "get": {
+        "summary": "GET /api/v1/generations",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/generations/{generation_id}/summary": {
+      "get": {
+        "summary": "GET /api/v1/generations/{generation_id}/summary",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/generations/{generation_id}/layers/{layer}": {
+      "get": {
+        "summary": "GET /api/v1/generations/{generation_id}/layers/{layer}",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/insights": {
+      "get": {
+        "summary": "GET /api/v1/insights",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/signals": {
+      "get": {
+        "summary": "GET /api/v1/signals",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/ingestion/runs": {
+      "get": {
+        "summary": "GET /api/v1/ingestion/runs",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/ingestion/run/{source_id}": {
+      "post": {
+        "summary": "POST /api/v1/ingestion/run/{source_id}",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/analytics/overview": {
+      "get": {
+        "summary": "GET /api/v1/analytics/overview",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/analytics/generations/{generation_id}": {
+      "get": {
+        "summary": "GET /api/v1/analytics/generations/{generation_id}",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/pipeline/run": {
+      "post": {
+        "summary": "POST /api/v1/pipeline/run",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/reports/inaugural": {
+      "get": {
+        "summary": "GET /api/v1/reports/inaugural",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

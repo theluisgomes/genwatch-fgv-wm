@@ -1,0 +1,70 @@
+entities:
+  raw_signals:
+    fields:
+      id: { type: uuid, primary: true }
+      source_id: { type: string, required: true }
+      platform: { type: string, required: true }
+      text: { type: text, required: true }
+      url: { type: string, nullable: true }
+      collected_at: { type: timestamptz, required: true }
+      generation_id: { type: string, nullable: true }
+      region_id: { type: string, nullable: true }
+      content_hash: { type: string, unique: true, required: true }
+      metadata: { type: jsonb, nullable: true }
+    indexes:
+      - [collected_at]
+      - [generation_id]
+      - [source_id]
+
+  processed_signals:
+    fields:
+      id: { type: uuid, primary: true }
+      raw_signal_id: { type: uuid, required: true, ref: raw_signals }
+      sentiment: { type: string, nullable: true }
+      topics: { type: jsonb, nullable: true }
+      emotional_trigger: { type: string, nullable: true }
+      cultural_shift: { type: boolean, default: false }
+      processed_at: { type: timestamptz, required: true }
+    indexes:
+      - [raw_signal_id]
+
+  insights:
+    fields:
+      id: { type: uuid, primary: true }
+      generation_id: { type: string, required: true }
+      region_id: { type: string, nullable: true }
+      layer: { type: enum, values: [capture, intelligence, delivery], required: true }
+      title: { type: string, required: true }
+      narrative: { type: text, required: true }
+      emotional_trigger: { type: string, nullable: true }
+      evidence_ids: { type: uuid_array, nullable: true }
+      confidence: { type: float, min: 0, max: 1, default: 0.5 }
+      tgi_projection: { type: string, nullable: true }
+      created_at: { type: timestamptz, required: true }
+    indexes:
+      - [generation_id]
+      - [layer]
+
+  tgi_weights:
+    fields:
+      id: { type: uuid, primary: true }
+      generation_id: { type: string, required: true }
+      region_id: { type: string, required: true }
+      metric: { type: string, required: true }
+      projected_value: { type: string, required: true }
+      updated_at: { type: timestamptz, required: true }
+    indexes:
+      - [generation_id, region_id]
+
+  ingestion_runs:
+    fields:
+      id: { type: uuid, primary: true }
+      source_id: { type: string, required: true }
+      status: { type: enum, values: [pending, running, success, failed], required: true }
+      record_count: { type: integer, default: 0 }
+      error_message: { type: text, nullable: true }
+      started_at: { type: timestamptz, required: true }
+      finished_at: { type: timestamptz, nullable: true }
+    indexes:
+      - [source_id]
+      - [started_at]

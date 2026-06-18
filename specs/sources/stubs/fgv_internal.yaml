@@ -1,0 +1,12 @@
+source:
+  id: fgv_internal_stub
+  type: stub
+  adapter: FGVInternalStubAdapter
+  schedule: "0 12 * * 1"
+  platform: fgv
+  config:
+    fixture_file: data/seeds/fgv_internal.json
+  generation_mapping:
+    rule: fixture
+  outputs:
+    entity: raw_signals

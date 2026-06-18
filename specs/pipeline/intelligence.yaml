@@ -1,0 +1,34 @@
+intelligence:
+  steps:
+    - id: sentiment
+      engine: local
+      model: rule_based
+    - id: topic_extract
+      engine: local
+      max_topics: 5
+    - id: behavioral_lens
+      engine: llm
+      prompt_template: behavioral_lens
+      inputs: [text, generation_id, topics, sentiment]
+      outputs:
+        emotional_trigger: string
+        cultural_shift: boolean
+        narrative: string
+        actionable_recommendation: string
+    - id: tgi_weight
+      engine: stub
+      adapter: tgi_kantar_stub
+      attach_field: tgi_projection
+
+  prompts:
+    behavioral_lens:
+      system: |
+        Você é a Lente Comportamental da Wisemetrics para a FGV.
+        Interprete sinais sobre educação no Brasil usando ciências do consumo.
+        Responda sempre em português brasileiro.
+      user_template: |
+        Geração: {{ generation_label }} ({{ generation_theme }}).
+        Analise o sinal e produza JSON com:
+        emotional_trigger, cultural_shift, narrative, actionable_recommendation.
+
+        Sinal: {{ text }}

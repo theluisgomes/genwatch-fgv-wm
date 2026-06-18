@@ -1,0 +1,14 @@
+phase:
+  id: 3
+  name: Inteligência & Interpretação
+  weeks: [5, 6]
+  gate: first_insights_presented
+
+acceptance_criteria:
+  - spec: pipeline/intelligence.yaml validates
+  - spec: generated/prompts/behavioral_lens.j2 exists
+  - test: pipeline processes signals into insights
+  - test: 3+ insights per generation available
+  - test: emotional triggers mapped per generation
+  - deliverable: inaugural report spec exists
+  - milestone: first insight presentation to FGV/DCOM

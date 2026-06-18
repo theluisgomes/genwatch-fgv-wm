@@ -1,0 +1,11 @@
+report:
+  id: inaugural
+  title: "GenWatch · Relatório Inaugural de Insights"
+  subtitle: "Inteligência geracional em educação · Wisemetrics × FGV"
+  format: pdf
+  sections:
+    - generation_summary
+    - top_insights
+    - emotional_triggers
+    - tgi_projections
+  auth: optional

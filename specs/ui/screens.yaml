@@ -1,0 +1,41 @@
+screens:
+  - id: overview
+    route: /
+    label: Visão Geral
+    layout: dashboard
+    bindings:
+      generations: GET /api/v1/generations
+      insights: GET /api/v1/insights?limit=5
+
+  - id: generation_detail
+    route: /generations/[id]
+    label: Geração
+    layout: generation_tabs
+    bindings:
+      summary: GET /api/v1/generations/{id}/summary
+      capture: GET /api/v1/generations/{id}/layers/capture
+      intelligence: GET /api/v1/generations/{id}/layers/intelligence
+      delivery: GET /api/v1/generations/{id}/layers/delivery
+
+  - id: regional_lens
+    route: /regions
+    label: Regional
+    layout: region_filter
+    bindings:
+      generations: GET /api/v1/generations
+      insights: GET /api/v1/insights
+
+  - id: reports
+    route: /reports
+    label: Relatórios
+    layout: reports
+    bindings:
+      insights: GET /api/v1/insights
+
+  - id: admin
+    route: /admin
+    label: Admin
+    layout: admin
+    auth: admin
+    bindings:
+      runs: GET /api/v1/ingestion/runs

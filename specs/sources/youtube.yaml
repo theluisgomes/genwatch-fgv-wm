@@ -1,0 +1,18 @@
+source:
+  id: youtube
+  type: live
+  adapter: YouTubeAdapter
+  schedule: "0 7 * * *"
+  platform: youtube
+  config:
+    search_queries:
+      - educação infantil Brasil
+      - vestibular ENEM
+      - MBA executivo
+      - educação executiva
+    max_results: 25
+  generation_mapping:
+    rule: keyword_classifier
+    fallback: llm_classify
+  outputs:
+    entity: raw_signals

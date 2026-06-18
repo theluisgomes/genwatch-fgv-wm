@@ -1,0 +1,11 @@
+regions:
+  - id: norte
+    label: Norte
+  - id: nordeste
+    label: Nordeste
+  - id: centro_oeste
+    label: Centro-Oeste
+  - id: sudeste
+    label: Sudeste
+  - id: sul
+    label: Sul

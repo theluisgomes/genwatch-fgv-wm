@@ -1,0 +1,10 @@
+source:
+  id: tgi_kantar_stub
+  type: stub
+  adapter: TGIKantarStubAdapter
+  schedule: "0 11 * * 1"
+  platform: tgi_kantar
+  config:
+    fixture_file: data/seeds/tgi_weights.json
+  outputs:
+    entity: tgi_weights

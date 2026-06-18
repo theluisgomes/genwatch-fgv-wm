@@ -1,0 +1,27 @@
+product:
+  name: GenWatch
+  client: FGV
+  partner: Wisemetrics
+  version: 0.1.0-mvp
+  locale: pt-BR
+  description: >
+    Sistema de inteligência geracional em educação para a FGV.
+    Captura sinais digitais públicos, processa com NLP/LLM e entrega
+    insights acionáveis por geração e região.
+
+constraints:
+  data_mode: public_only
+  generations: all
+  timeline_weeks: 8
+
+success_criteria:
+  - id: sc_dashboard
+    description: Dashboard live with auth, 5 generations, 5 regions
+  - id: sc_sources
+    description: At least 2 real public sources ingesting on schedule
+  - id: sc_stubs
+    description: 3 stub adapters through same pipeline as real sources
+  - id: sc_insights
+    description: 15+ interpreted insights (3+ per generation)
+  - id: sc_specs
+    description: spec validate and spec check pass in CI

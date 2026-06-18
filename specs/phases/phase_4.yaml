@@ -1,0 +1,15 @@
+phase:
+  id: 4
+  name: Dashboard & Entrega
+  weeks: [7, 8]
+  gate: mvp_operational
+
+acceptance_criteria:
+  - spec: ui/screens.yaml defines all 5 screens
+  - spec: reports/inaugural.yaml exists
+  - test: dashboard renders overview and generation detail
+  - test: analytics endpoints return chart data
+  - test: PDF report endpoint returns valid document
+  - test: admin ingestion monitoring available
+  - deliverable: auth gate for admin routes
+  - milestone: official MVP handoff
